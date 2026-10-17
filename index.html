@@ -94,6 +94,14 @@
   .contact-cards a:hover{border-color:var(--accent);transform:translateY(-3px)}
   .contact-cards svg{width:22px;height:22px;stroke:var(--accent)}
   .contact small{display:block;margin-top:34px;color:var(--muted);font-size:13px;letter-spacing:.08em}
+  .contact-cards a.primary{background:var(--accent);border-color:var(--accent);color:#06222b;padding:26px 38px;font-size:19px}
+  .contact-cards a.primary svg{stroke:#06222b;width:26px;height:26px}
+  .contact-cards a.primary span{display:flex;flex-direction:column;align-items:flex-start;gap:5px;text-align:left}
+  .contact-cards a.primary small{font-weight:500;font-size:13px;color:#0a3442;letter-spacing:0;margin:0;display:block}
+  .contact-cards a.primary:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(34,211,238,.25)}
+  .phone-line{margin-top:26px;color:var(--muted);font-size:14px;display:flex;gap:10px;justify-content:center;align-items:baseline;flex-wrap:wrap}
+  .phone-line a{color:var(--ink);text-decoration:none;font-weight:600}
+  .phone-line a:hover{color:var(--accent)}
 
   footer{padding:34px 0;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
   footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
@@ -249,16 +257,16 @@
   <div class="wrap">
     <div class="no" style="font-size:13px;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;margin-bottom:14px" data-i18n="k0">04 · Contact</div>
     <h2 data-i18n="kh">Let's talk about your data.</h2>
-    <p class="lead" data-i18n="kl">One call is enough to scope your highest-value use case.</p>
+    <p class="lead" data-i18n="kl">One email is enough to scope your highest-value use case.</p>
     <div class="contact-cards">
-      <a href="tel:+903129634953">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        +90 312 963 49 53
-      </a>
-      <a href="mailto:info@hestiadata.net">
+      <a href="mailto:info@hestiadata.net" class="primary">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
-        info@hestiadata.net
+        <span>info@hestiadata.net<small data-i18n="kmail">Fastest channel — every inquiry gets a scoped reply within one business day.</small></span>
       </a>
+    </div>
+    <div class="phone-line">
+      <a href="tel:+903129634953">+90 312 963 49 53</a>
+      <span data-i18n="kphone">Calls are answered by our AI assistant — for a detailed answer, email us.</span>
     </div>
     <small data-i18n="kaddr">Ankara, Türkiye</small>
   </div>
@@ -295,7 +303,7 @@ const T = {
     ab2:"That origin shapes how we work: current methods, hands-on engineering, and solutions designed to be understood and owned by your team — not just delivered.",
     abb:"An AI Work School Company", abs:"hestiadata.net · aiworkschool.com",
     abp:"Hestia Data operates as the data & analytics arm of the AI Work School group, turning applied-AI education into enterprise-grade delivery.",
-    k0:"04 · Contact", kh:"Let's talk about your data.", kl:"One call is enough to scope your highest-value use case.", kaddr:"Ankara, Türkiye",
+    k0:"04 · Contact", kh:"Let's talk about your data.", kl:"One email is enough to scope your highest-value use case.", kmail:"Fastest channel — every inquiry gets a scoped reply within one business day.", kphone:"Calls are answered by our AI assistant — for a detailed answer, email us.", kaddr:"Ankara, Türkiye",
     f1:'© 2026 Hestia Data — An <a href="https://aiworkschool.com">AI Work School</a> company. All rights reserved.'
   },
   tr: {
@@ -320,7 +328,7 @@ const T = {
     ab2:"Bu köken çalışma biçimimizi şekillendirir: güncel yöntemler, uygulamalı mühendislik ve ekibiniz tarafından anlaşılıp sahiplenilecek çözümler.",
     abb:"Bir AI Work School Şirketi", abs:"hestiadata.net · aiworkschool.com",
     abp:"Hestia Data, AI Work School grubunun veri ve analitik kolu olarak faaliyet gösterir; uygulamalı yapay zekâ eğitimini kurumsal teslimata dönüştürür.",
-    k0:"04 · İletişim", kh:"Verinizi konuşalım.", kl:"En yüksek değerli kullanım senaryonuzu belirlemek için tek bir görüşme yeterli.", kaddr:"Ankara, Türkiye",
+    k0:"04 · İletişim", kh:"Verinizi konuşalım.", kl:"En yüksek değerli kullanım senaryonuzu belirlemek için tek bir e-posta yeterli.", kmail:"En hızlı kanal — her talep bir iş günü içinde kapsamlı yanıt alır.", kphone:"Telefonları yapay zekâ asistanımız karşılar — detaylı yanıt için bize yazın.", kaddr:"Ankara, Türkiye",
     f1:'© 2026 Hestia Data — Bir <a href="https://aiworkschool.com">AI Work School</a> şirketidir. Tüm hakları saklıdır.'
   }
 };
