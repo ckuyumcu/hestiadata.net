@@ -11,8 +11,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#050a14; --bg2:#081020; --panel:#0b1526; --line:rgba(148,163,184,.13);
-  --ink:#eaf1fa; --muted:#8ba0bc; --accent:#22d3ee; --accent2:#38bdf8; --green:#34d399;
+  --bg:#081020; --bg2:#0c1729; --panel:#12203a; --line:rgba(148,163,184,.22);
+  --ink:#f0f5fc; --muted:#a3b6cf; --accent:#22d3ee; --accent2:#38bdf8; --green:#34d399;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -39,8 +39,8 @@ header{position:fixed;top:0;left:0;right:0;z-index:60;background:rgba(5,10,20,.7
 
 /* ---------- HERO ---------- */
 .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;
-  background:radial-gradient(1100px 600px at 78% 18%,rgba(34,211,238,.10),transparent 62%),
-             radial-gradient(800px 600px at 8% 92%,rgba(56,189,248,.07),transparent 60%),var(--bg)}
+  background:radial-gradient(1100px 600px at 78% 18%,rgba(34,211,238,.16),transparent 62%),
+             radial-gradient(800px 600px at 8% 92%,rgba(56,189,248,.11),transparent 60%),var(--bg)}
 .hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(148,163,184,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(148,163,184,.05) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 85% 75% at 50% 38%,#000 25%,transparent 78%)}
 .hero-inner{position:relative;width:100%;padding:150px 0 100px;display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center}
 @media(max-width:980px){.hero-inner{grid-template-columns:1fr;padding-top:130px}}
@@ -61,7 +61,7 @@ h1 .accent{background:linear-gradient(92deg,var(--accent),var(--accent2));-webki
 .stat span{font-size:11.5px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase}
 
 /* radar panel */
-.radar{position:relative;background:linear-gradient(160deg,rgba(14,25,45,.85),rgba(7,13,24,.9));border:1px solid rgba(34,211,238,.22);border-radius:22px;padding:26px;box-shadow:0 30px 80px rgba(0,0,0,.5),inset 0 0 60px rgba(34,211,238,.04)}
+.radar{position:relative;background:linear-gradient(160deg,rgba(22,38,66,.92),rgba(10,18,34,.94));border:1px solid rgba(34,211,238,.45);border-radius:22px;padding:26px;box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 50px rgba(34,211,238,.10),inset 0 0 60px rgba(34,211,238,.06)}
 .radar-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-size:11px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase}
 .radar-head .live{display:flex;align-items:center;gap:8px;color:var(--green)}
 .radar-head .live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);animation:blink 1.6s infinite}
@@ -94,9 +94,9 @@ h2{font-size:clamp(30px,3.8vw,50px);letter-spacing:-.02em;font-weight:700;line-h
 
 /* services */
 .svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:22px}
-.svc{position:relative;background:linear-gradient(165deg,var(--panel),#091222);border:1px solid var(--line);border-radius:18px;padding:38px 32px;overflow:hidden;transition:.3s}
-.svc::after{content:"";position:absolute;inset:0;background:radial-gradient(400px 200px at 50% -10%,rgba(34,211,238,.12),transparent 70%);opacity:0;transition:.35s}
-.svc:hover{transform:translateY(-6px);border-color:rgba(34,211,238,.4);box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.svc{position:relative;background:linear-gradient(165deg,#14233f,#0d1830);border:1px solid rgba(148,163,184,.25);border-radius:18px;padding:38px 32px;overflow:hidden;transition:.3s}
+.svc::after{content:"";position:absolute;inset:0;background:radial-gradient(400px 200px at 50% -10%,rgba(34,211,238,.14),transparent 70%);opacity:.45;transition:.35s}
+.svc:hover{transform:translateY(-6px);border-color:rgba(34,211,238,.55);box-shadow:0 24px 60px rgba(0,0,0,.5),0 0 40px rgba(34,211,238,.08)}
 .svc:hover::after{opacity:1}
 .svc .icon{width:54px;height:54px;border-radius:14px;background:rgba(34,211,238,.09);border:1px solid rgba(34,211,238,.3);display:flex;align-items:center;justify-content:center;margin-bottom:26px}
 .svc .icon svg{width:26px;height:26px;stroke:var(--accent);fill:none;stroke-width:1.7}
@@ -110,17 +110,17 @@ h2{font-size:clamp(30px,3.8vw,50px);letter-spacing:-.02em;font-weight:700;line-h
 /* deliverables */
 .deliv{background:var(--bg2)}
 .deliv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
-.doc{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:.3s}
-.doc:hover{transform:translateY(-5px);border-color:rgba(34,211,238,.35)}
-.doc .bar{display:flex;gap:7px;padding:14px 16px;border-bottom:1px solid var(--line);align-items:center}
-.doc .bar i{width:10px;height:10px;border-radius:50%;background:#1c2c44}
+.doc{position:relative;background:linear-gradient(165deg,#13223d,#0d1830);border:1px solid rgba(148,163,184,.25);border-radius:16px;overflow:hidden;transition:.3s}
+.doc:hover{transform:translateY(-5px);border-color:rgba(34,211,238,.5);box-shadow:0 20px 50px rgba(0,0,0,.45)}
+.doc .bar{display:flex;gap:7px;padding:14px 16px;border-bottom:1px solid var(--line);align-items:center;background:rgba(8,16,32,.5)}
+.doc .bar i{width:10px;height:10px;border-radius:50%;background:#2a3f60}
 .doc .bar i:first-child{background:rgba(34,211,238,.6)}
 .doc .bar span{margin-left:auto;font-size:11px;color:var(--muted);letter-spacing:.1em}
 .doc .body{padding:22px;min-height:210px}
 .doc h4{font-size:15px;margin-bottom:14px;color:var(--ink);font-family:"Space Grotesk"}
 .tag-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
 .tag{font-size:10.5px;letter-spacing:.08em;padding:5px 11px;border-radius:20px;border:1px solid rgba(34,211,238,.35);color:var(--accent);background:rgba(34,211,238,.06)}
-.ph{position:relative;height:120px;border-radius:10px;background:linear-gradient(140deg,#12233c,#0a1626);border:1px solid var(--line);overflow:hidden;display:flex;align-items:flex-end;padding:10px}
+.ph{position:relative;height:120px;border-radius:10px;background:linear-gradient(140deg,#1b3358,#10203a);border:1px solid rgba(148,163,184,.3);overflow:hidden;display:flex;align-items:flex-end;padding:10px}
 .ph::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(148,163,184,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(148,163,184,.08) 1px,transparent 1px);background-size:22px 22px}
 .ph .geo{position:relative;font-size:10.5px;color:var(--green);background:rgba(5,10,20,.8);border:1px solid rgba(52,211,153,.4);border-radius:6px;padding:4px 9px;letter-spacing:.05em}
 .ph .crosshair{position:absolute;top:38%;left:58%;width:26px;height:26px;border:1.5px solid var(--accent);border-radius:50%;opacity:.8}
@@ -128,7 +128,7 @@ h2{font-size:clamp(30px,3.8vw,50px);letter-spacing:-.02em;font-weight:700;line-h
 table.mock{width:100%;border-collapse:collapse;font-size:11.5px;color:var(--muted)}
 table.mock th{color:var(--accent);text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);font-weight:600;letter-spacing:.06em;font-size:10.5px;text-transform:uppercase}
 table.mock td{padding:6px 8px;border-bottom:1px dashed rgba(148,163,184,.12)}
-.doc-line{height:9px;border-radius:5px;background:#16263f;margin:11px 0}
+.doc-line{height:9px;border-radius:5px;background:#22385e;margin:11px 0}
 .doc-line.w60{width:60%}.doc-line.w80{width:80%}.doc-line.w45{width:45%}
 .stamp{position:absolute;right:18px;bottom:16px;border:1.5px solid var(--green);color:var(--green);font-size:10px;letter-spacing:.18em;padding:6px 12px;border-radius:6px;transform:rotate(-6deg);text-transform:uppercase;background:rgba(5,10,20,.6)}
 
@@ -150,7 +150,7 @@ table.mock td{padding:6px 8px;border-bottom:1px dashed rgba(148,163,184,.12)}
 .split{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center}
 @media(max-width:920px){.split{grid-template-columns:1fr}}
 .split p{color:var(--muted);margin-bottom:18px;font-size:16px}
-.badge-card{background:linear-gradient(160deg,var(--panel),#08101f);border:1px solid rgba(34,211,238,.28);border-radius:20px;padding:40px;position:relative;overflow:hidden}
+.badge-card{background:linear-gradient(160deg,#14233f,#0b1730);border:1px solid rgba(34,211,238,.4);border-radius:20px;padding:40px;position:relative;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.4)}
 .badge-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent)}
 .badge-card .row{display:flex;gap:18px;align-items:center;margin-bottom:22px}
 .badge-card .mark{width:58px;height:58px;border-radius:15px;background:linear-gradient(135deg,#0e2a3a,#070d18);border:1px solid rgba(34,211,238,.45);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent);font-size:15px;font-family:"Space Grotesk"}
@@ -253,12 +253,12 @@ footer a.accent{color:var(--accent);text-decoration:none}
           <linearGradient id="sw" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#22d3ee" stop-opacity=".35"/><stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/></linearGradient>
         </defs>
         <rect x="0" y="0" width="600" height="380" fill="url(#rg)" rx="12"/>
-        <g stroke="rgba(148,163,184,.18)" fill="none">
+        <g stroke="rgba(163,190,220,.4)" fill="none">
           <circle cx="300" cy="190" r="60"/><circle cx="300" cy="190" r="110"/><circle cx="300" cy="190" r="160"/>
           <line x1="300" y1="20" x2="300" y2="360"/><line x1="130" y1="190" x2="470" y2="190"/>
         </g>
         <path class="sweep" d="M300 190 L300 30 A160 160 0 0 1 380 45 Z" fill="url(#sw)"/>
-        <g font-family="Space Grotesk" font-size="11" fill="#8ba0bc" letter-spacing="1">
+        <g font-family="Space Grotesk" font-size="11" fill="#a3b6cf" letter-spacing="1">
           <g><circle cx="185" cy="120" r="4" fill="#22d3ee"/><circle class="ping" cx="185" cy="120" r="6" fill="none" stroke="#22d3ee"/><text x="197" y="124">İSTANBUL</text></g>
           <g><circle cx="300" cy="190" r="5" fill="#34d399"/><circle class="ping" cx="300" cy="190" r="7" fill="none" stroke="#34d399"/><text x="312" y="194" fill="#34d399">ANKARA · HQ</text></g>
           <g><circle cx="150" cy="215" r="4" fill="#22d3ee"/><circle class="ping" cx="150" cy="215" r="6" fill="none" stroke="#22d3ee"/><text x="162" y="219">İZMİR</text></g>
@@ -416,14 +416,14 @@ footer a.accent{color:var(--accent);text-decoration:none}
     </div>
     <svg class="pipe-svg rv" viewBox="0 0 1180 190">
       <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#22d3ee"/></marker></defs>
-      <g font-family="Space Grotesk" font-size="15" fill="#eaf1fa">
-        <g><rect x="20" y="55" width="230" height="80" rx="14" fill="#0b1526" stroke="rgba(34,211,238,.35)"/><text x="135" y="90" text-anchor="middle">COLLECT</text><text x="135" y="112" text-anchor="middle" font-size="11" fill="#8ba0bc" data-i18n="p1">field team · geotag · timestamp</text></g>
+      <g font-family="Space Grotesk" font-size="15" fill="#f0f5fc">
+        <g><rect x="20" y="55" width="230" height="80" rx="14" fill="#13223d" stroke="rgba(34,211,238,.5)"/><text x="135" y="90" text-anchor="middle">COLLECT</text><text x="135" y="112" text-anchor="middle" font-size="11" fill="#a3b6cf" data-i18n="p1">field team · geotag · timestamp</text></g>
         <line class="flow" x1="255" y1="95" x2="305" y2="95" stroke="#22d3ee" stroke-width="2" marker-end="url(#arr)"/>
-        <g><rect x="315" y="55" width="230" height="80" rx="14" fill="#0b1526" stroke="rgba(34,211,238,.35)"/><text x="430" y="90" text-anchor="middle">AI CHECK</text><text x="430" y="112" text-anchor="middle" font-size="11" fill="#8ba0bc" data-i18n="p2">blur · duplicate · GPS sanity</text></g>
+        <g><rect x="315" y="55" width="230" height="80" rx="14" fill="#13223d" stroke="rgba(34,211,238,.5)"/><text x="430" y="90" text-anchor="middle">AI CHECK</text><text x="430" y="112" text-anchor="middle" font-size="11" fill="#a3b6cf" data-i18n="p2">blur · duplicate · GPS sanity</text></g>
         <line class="flow" x1="550" y1="95" x2="600" y2="95" stroke="#22d3ee" stroke-width="2" marker-end="url(#arr)"/>
-        <g><rect x="610" y="55" width="230" height="80" rx="14" fill="#0b1526" stroke="rgba(34,211,238,.35)"/><text x="725" y="90" text-anchor="middle">HUMAN QA</text><text x="725" y="112" text-anchor="middle" font-size="11" fill="#8ba0bc" data-i18n="p3">analyst review · sampling</text></g>
+        <g><rect x="610" y="55" width="230" height="80" rx="14" fill="#13223d" stroke="rgba(34,211,238,.5)"/><text x="725" y="90" text-anchor="middle">HUMAN QA</text><text x="725" y="112" text-anchor="middle" font-size="11" fill="#a3b6cf" data-i18n="p3">analyst review · sampling</text></g>
         <line class="flow" x1="845" y1="95" x2="895" y2="95" stroke="#22d3ee" stroke-width="2" marker-end="url(#arr)"/>
-        <g><rect x="905" y="55" width="255" height="80" rx="14" fill="#0e2a3a" stroke="#22d3ee"/><text x="1032" y="90" text-anchor="middle" fill="#22d3ee">SECURE DELIVERY</text><text x="1032" y="112" text-anchor="middle" font-size="11" fill="#8ba0bc" data-i18n="p4">encrypted link · full log</text></g>
+        <g><rect x="905" y="55" width="255" height="80" rx="14" fill="#12394a" stroke="#22d3ee"/><text x="1032" y="90" text-anchor="middle" fill="#22d3ee">SECURE DELIVERY</text><text x="1032" y="112" text-anchor="middle" font-size="11" fill="#a3b6cf" data-i18n="p4">encrypted link · full log</text></g>
       </g>
     </svg>
   </div>
@@ -434,7 +434,7 @@ footer a.accent{color:var(--accent);text-decoration:none}
   <div class="wrap split">
     <div class="rv">
       <div class="no" data-i18n="ab0">05 · Why Us</div>
-      <h2 style="margin-bottom:26px" data-i18n="abh">You can't collect this data from abroad.<br>We're already here.</h2>
+      <h2 style="margin-bottom:26px" data-i18n-html="abh">You can't collect this data from abroad.<br>We're already here.</h2>
       <p data-i18n="ab1">Hestia Data is an Ankara-based field data collection company built for international clients. When your research, audit or AI project needs real-world material from Türkiye, we are your team on the ground.</p>
       <p data-i18n="ab2">As an AI Work School venture, we combine trained field collectors with AI-assisted quality control — every photo, document and dataset is verified before it reaches you.</p>
     </div>
