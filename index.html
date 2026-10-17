@@ -1,150 +1,338 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hestia Data — Veri Analitiği ve Yapay Zekâ Çözümleri</title>
-<meta name="description" content="Hestia Data, bir AI Work School iştirakidir. Kurumsal veri analitiği, yapay zekâ ve iş zekâsı çözümleri.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230f766e'/><text x='50' y='68' font-size='55' text-anchor='middle' fill='white' font-family='Arial'>H</text></svg>">
+<title>Hestia Data · Data Analytics & Applied AI</title>
+<meta name="description" content="Hestia Data — an AI Work School company. Data analytics, applied AI and data engineering for decision-driven organizations.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%230b1220'/><path d='M28 70 L28 30 L36 30 L36 46 L64 46 L64 30 L72 30 L72 70 L64 70 L64 54 L36 54 L36 70 Z' fill='%2322d3ee'/></svg>">
 <style>
   :root{
-    --teal:#0f766e; --teal-dark:#115e59; --ink:#0f172a; --muted:#475569;
-    --bg:#f8fafc; --card:#ffffff; --line:#e2e8f0;
+    --bg:#070d18; --bg2:#0b1220; --panel:#0e1626; --line:rgba(148,163,184,.14);
+    --ink:#e8eef7; --muted:#8ea0b8; --accent:#22d3ee; --accent2:#38bdf8;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-  header{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:10}
-  .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
-  .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px;color:var(--ink);text-decoration:none}
-  .logo-badge{width:34px;height:34px;border-radius:9px;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px}
-  .nav a.btn{background:var(--teal);color:#fff;text-decoration:none;padding:9px 18px;border-radius:8px;font-size:14px;font-weight:600}
-  .nav a.btn:hover{background:var(--teal-dark)}
-  .hero{padding:96px 0 72px;text-align:center;background:linear-gradient(180deg,#ecfdf5 0%,var(--bg) 100%)}
-  .hero .tag{display:inline-block;background:#ccfbf1;color:var(--teal-dark);font-size:13px;font-weight:600;padding:6px 14px;border-radius:999px;margin-bottom:20px}
-  .hero h1{font-size:44px;line-height:1.15;letter-spacing:-0.02em;margin-bottom:18px}
-  .hero p{font-size:18px;color:var(--muted);max-width:640px;margin:0 auto 32px}
-  .hero .actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-  .hero .actions a{padding:13px 26px;border-radius:10px;font-weight:600;text-decoration:none;font-size:15px}
-  .hero .actions .primary{background:var(--teal);color:#fff}
-  .hero .actions .primary:hover{background:var(--teal-dark)}
-  .hero .actions .ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
-  section{padding:64px 0}
-  h2{font-size:30px;letter-spacing:-0.01em;margin-bottom:8px;text-align:center}
-  .sub{text-align:center;color:var(--muted);max-width:620px;margin:0 auto 40px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px}
-  .card .icon{width:44px;height:44px;border-radius:11px;background:#ccfbf1;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px}
-  .card h3{font-size:17px;margin-bottom:8px}
-  .card p{font-size:14px;color:var(--muted)}
-  .about{display:flex;gap:40px;align-items:center;flex-wrap:wrap}
-  .about > div{flex:1;min-width:280px}
-  .about h2{text-align:left}
-  .about p{color:var(--muted);margin-bottom:14px}
-  .affiliate{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;align-items:center;gap:16px}
-  .affiliate .mark{width:48px;height:48px;border-radius:12px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0}
-  .affiliate b{display:block}
-  .affiliate span{font-size:13px;color:var(--muted)}
-  .contact{background:var(--ink);color:#fff;border-radius:18px;padding:48px;text-align:center}
-  .contact h2{color:#fff}
-  .contact p{color:#94a3b8;margin-bottom:28px}
-  .contact .row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-  .contact .pill{background:#1e293b;border:1px solid #334155;border-radius:10px;padding:14px 22px;text-decoration:none;color:#fff;font-size:15px;display:flex;align-items:center;gap:10px}
-  .contact .pill:hover{border-color:var(--teal)}
-  footer{border-top:1px solid var(--line);padding:28px 0;text-align:center;font-size:13px;color:var(--muted)}
-  footer a{color:var(--teal);text-decoration:none}
-  @media (max-width:600px){.hero h1{font-size:32px}.contact{padding:32px 20px}}
+  html{scroll-behavior:smooth}
+  body{font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 32px}
+  ::selection{background:var(--accent);color:#04121a}
+
+  header{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(7,13,24,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+  .logo-mark{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#0e2a3a,#0b1220);border:1px solid rgba(34,211,238,.35);display:flex;align-items:center;justify-content:center}
+  .logo-mark svg{width:20px;height:20px}
+  .logo b{font-size:17px;letter-spacing:.06em}
+  .logo small{display:block;font-size:9.5px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase}
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;transition:color .2s}
+  .nav-links a:hover{color:var(--accent)}
+  .lang{display:flex;border:1px solid var(--line);border-radius:6px;overflow:hidden;margin-left:14px}
+  .lang button{background:transparent;border:0;color:var(--muted);font-size:12px;letter-spacing:.1em;padding:8px 14px;cursor:pointer}
+  .lang button.on{background:var(--accent);color:#04121a;font-weight:700}
+  .burger{display:none}
+
+  .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;background:
+    radial-gradient(900px 500px at 85% 20%, rgba(34,211,238,.09), transparent 60%),
+    radial-gradient(700px 500px at 10% 90%, rgba(56,189,248,.06), transparent 60%), var(--bg)}
+  .hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(148,163,184,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(148,163,184,.05) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 70% at 50% 40%,#000 30%,transparent 75%)}
+  .hero-inner{position:relative;padding:140px 0 90px;width:100%}
+  .kicker{display:flex;align-items:center;gap:14px;font-size:12.5px;letter-spacing:.24em;color:var(--muted);text-transform:uppercase;margin-bottom:34px}
+  .kicker::before{content:"";width:44px;height:2px;background:var(--accent)}
+  h1{font-size:clamp(42px,6.2vw,84px);line-height:1.04;letter-spacing:-.02em;font-weight:800;max-width:900px}
+  h1 .accent{color:var(--accent)}
+  .hero p{max-width:640px;color:var(--muted);font-size:18px;margin:30px 0 44px}
+  .cta{display:flex;gap:16px;flex-wrap:wrap}
+  .cta a{padding:15px 32px;border-radius:8px;text-decoration:none;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;transition:.2s}
+  .cta .primary{background:var(--accent);color:#04121a}
+  .cta .primary:hover{background:var(--accent2);transform:translateY(-2px)}
+  .cta .ghost{border:1px solid var(--line);color:var(--ink)}
+  .cta .ghost:hover{border-color:var(--accent);color:var(--accent)}
+  .hero-stats{display:flex;gap:56px;margin-top:80px;flex-wrap:wrap}
+  .stat b{display:block;font-size:34px;font-weight:800;color:var(--ink);letter-spacing:-.01em}
+  .stat span{font-size:12px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase}
+
+  section{padding:110px 0;border-top:1px solid var(--line)}
+  .sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:30px;margin-bottom:60px;flex-wrap:wrap}
+  h2{font-size:clamp(30px,3.6vw,46px);letter-spacing:-.015em;font-weight:800;line-height:1.12}
+  .sec-head .no{font-size:13px;letter-spacing:.2em;color:var(--accent);text-transform:uppercase}
+  .lead{color:var(--muted);max-width:560px;font-size:16.5px}
+
+  .cap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+  .cap{background:var(--bg2);padding:38px 32px;transition:background .25s}
+  .cap:hover{background:#101b30}
+  .cap .idx{font-size:12px;letter-spacing:.2em;color:var(--accent);margin-bottom:22px}
+  .cap h3{font-size:19px;margin-bottom:12px;font-weight:700}
+  .cap p{font-size:14.5px;color:var(--muted)}
+  .cap ul{list-style:none;margin-top:16px}
+  .cap li{font-size:13.5px;color:var(--muted);padding:6px 0 6px 18px;position:relative;border-top:1px dashed var(--line)}
+  .cap li::before{content:"→";position:absolute;left:0;color:var(--accent)}
+
+  .split{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center}
+  @media(max-width:900px){.split{grid-template-columns:1fr}}
+  .split p{color:var(--muted);margin-bottom:18px;font-size:16px}
+  .badge-card{background:var(--panel);border:1px solid rgba(34,211,238,.25);border-radius:16px;padding:38px;position:relative;overflow:hidden}
+  .badge-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent)}
+  .badge-card .row{display:flex;gap:18px;align-items:center;margin-bottom:20px}
+  .badge-card .mark{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,#0e2a3a,#070d18);border:1px solid rgba(34,211,238,.4);display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--accent);font-size:15px}
+  .badge-card b{font-size:17px;display:block}
+  .badge-card span{font-size:13px;color:var(--muted)}
+  .badge-card p{font-size:14.5px;margin:0}
+
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:26px}
+  .step{border-top:2px solid var(--line);padding-top:26px;position:relative}
+  .step::before{content:"";position:absolute;top:-2px;left:0;width:44px;height:2px;background:var(--accent)}
+  .step .n{font-size:13px;color:var(--accent);letter-spacing:.18em;margin-bottom:12px}
+  .step h3{font-size:17px;margin-bottom:8px}
+  .step p{font-size:14px;color:var(--muted)}
+
+  .contact{background:linear-gradient(180deg,var(--bg2),var(--bg));text-align:center}
+  .contact h2{margin-bottom:16px}
+  .contact .lead{margin:0 auto 46px;text-align:center}
+  .contact-cards{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+  .contact-cards a{display:flex;align-items:center;gap:14px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:22px 30px;text-decoration:none;color:var(--ink);font-size:16px;font-weight:600;transition:.2s}
+  .contact-cards a:hover{border-color:var(--accent);transform:translateY(-3px)}
+  .contact-cards svg{width:22px;height:22px;stroke:var(--accent)}
+  .contact small{display:block;margin-top:34px;color:var(--muted);font-size:13px;letter-spacing:.08em}
+
+  footer{padding:34px 0;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+  footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  footer a{color:var(--accent);text-decoration:none}
+
+  @media(max-width:760px){
+    .nav-links{display:none}
+    .burger{display:block;background:none;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:9px 14px;font-size:16px;cursor:pointer}
+    .mobile-menu{display:none;position:fixed;top:72px;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--line);padding:24px 32px;flex-direction:column;gap:18px;z-index:49}
+    .mobile-menu.open{display:flex}
+    .mobile-menu a{color:var(--ink);text-decoration:none;font-size:15px;letter-spacing:.1em;text-transform:uppercase}
+    section{padding:72px 0}
+  }
 </style>
 </head>
 <body>
 
 <header>
   <div class="wrap nav">
-    <a class="logo" href="#"><span class="logo-badge">H</span> Hestia Data</a>
-    <a class="btn" href="#iletisim">İletişim</a>
+    <a class="logo" href="#top">
+      <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2"><path d="M6 4v16M18 4v16M6 12h12"/></svg></span>
+      <span><b>HESTIA DATA</b><small data-i18n="tag">An AI Work School Company</small></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#capabilities" data-i18n="n1">Capabilities</a>
+      <a href="#approach" data-i18n="n2">Approach</a>
+      <a href="#about" data-i18n="n3">About</a>
+      <a href="#contact" data-i18n="n4">Contact</a>
+      <div class="lang">
+        <button id="btn-en" class="on" onclick="setLang('en')">EN</button>
+        <button id="btn-tr" onclick="setLang('tr')">TR</button>
+      </div>
+    </nav>
+    <button class="burger" onclick="document.getElementById('mmenu').classList.toggle('open')">☰</button>
   </div>
 </header>
+<div class="mobile-menu" id="mmenu">
+  <a href="#capabilities" data-i18n="n1">Capabilities</a>
+  <a href="#approach" data-i18n="n2">Approach</a>
+  <a href="#about" data-i18n="n3">About</a>
+  <a href="#contact" data-i18n="n4">Contact</a>
+</div>
 
-<div class="hero">
-  <div class="wrap">
-    <span class="tag">Bir AI Work School iştirakidir</span>
-    <h1>Veriyi işletmeniz için<br>karar gücüne dönüştürüyoruz</h1>
-    <p>Hestia Data; veri analitiği, iş zekâsı ve yapay zekâ çözümleriyle kurumların veriye dayalı karar almasını sağlayan bir teknoloji şirketidir.</p>
-    <div class="actions">
-      <a class="primary" href="mailto:info@hestiadata.net">Bize Ulaşın</a>
-      <a class="ghost" href="#hizmetler">Hizmetlerimiz</a>
+<div class="hero" id="top">
+  <div class="hero-grid-bg"></div>
+  <div class="wrap hero-inner">
+    <div class="kicker" data-i18n="kicker">Hestia Data · An AI Work School Company</div>
+    <h1 data-i18n-html="h1">Data is everywhere.<br><span class="accent">Decisions are not.</span></h1>
+    <p data-i18n="hero">We build the analytics, applied AI and data infrastructure that turn raw operational data into executive decisions — measured in weeks, not years.</p>
+    <div class="cta">
+      <a class="primary" href="mailto:info@hestiadata.net" data-i18n="cta1">Start a Project</a>
+      <a class="ghost" href="#capabilities" data-i18n="cta2">Explore Capabilities</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><b>4</b><span data-i18n="s1">Practice Areas</span></div>
+      <div class="stat"><b>100%</b><span data-i18n="s2">Delivery Focused</span></div>
+      <div class="stat"><b>AI</b><span data-i18n="s3">Native by Design</span></div>
     </div>
   </div>
 </div>
 
-<section id="hizmetler">
+<section id="capabilities">
   <div class="wrap">
-    <h2>Hizmetlerimiz</h2>
-    <p class="sub">Uçtan uca veri çözümleri: toplama, işleme, analiz ve karar destek sistemleri.</p>
-    <div class="grid">
-      <div class="card">
-        <div class="icon">📊</div>
-        <h3>Veri Analitiği &amp; İş Zekâsı</h3>
-        <p>İnteraktif panolar, KPI takibi ve yönetim raporlaması ile verinizi anlaşılır içgörülere dönüştürüyoruz.</p>
+    <div class="sec-head">
+      <div>
+        <div class="no" data-i18n="c0">01 · Capabilities</div>
+        <h2 data-i18n="ch">What we build</h2>
       </div>
-      <div class="card">
-        <div class="icon">🤖</div>
-        <h3>Yapay Zekâ Çözümleri</h3>
-        <p>Tahminleme, sınıflandırma ve süreç otomasyonu için kurumunuza özel makine öğrenmesi modelleri geliştiriyoruz.</p>
+      <p class="lead" data-i18n="cl">End-to-end data capability: from pipelines to models to the dashboards your board actually reads.</p>
+    </div>
+    <div class="cap-grid">
+      <div class="cap">
+        <div class="idx">01</div>
+        <h3 data-i18n="c1h">Data Analytics & BI</h3>
+        <p data-i18n="c1p">Decision-grade reporting and self-service analytics for leadership and operations.</p>
+        <ul>
+          <li data-i18n="c1a">Executive dashboards & KPI systems</li>
+          <li data-i18n="c1b">Automated management reporting</li>
+          <li data-i18n="c1c">Data quality & governance</li>
+        </ul>
       </div>
-      <div class="card">
-        <div class="icon">🗄️</div>
-        <h3>Veri Altyapısı</h3>
-        <p>Veri ambarı kurulumu, ETL süreçleri ve veri kalitesi yönetimiyle sağlam bir veri temeli inşa ediyoruz.</p>
+      <div class="cap">
+        <div class="idx">02</div>
+        <h3 data-i18n="c2h">Applied AI & ML</h3>
+        <p data-i18n="c2p">Production machine learning that solves real business problems — not demos.</p>
+        <ul>
+          <li data-i18n="c2a">Forecasting & demand planning</li>
+          <li data-i18n="c2b">Classification & anomaly detection</li>
+          <li data-i18n="c2c">LLM-powered process automation</li>
+        </ul>
       </div>
-      <div class="card">
-        <div class="icon">🎓</div>
-        <h3>Eğitim &amp; Danışmanlık</h3>
-        <p>AI Work School ekosisteminin eğitim birikimiyle ekiplerinize veri okuryazarlığı ve analitik yetkinlik kazandırıyoruz.</p>
+      <div class="cap">
+        <div class="idx">03</div>
+        <h3 data-i18n="c3h">Data Engineering</h3>
+        <p data-i18n="c3p">The foundation everything else depends on: reliable, documented, scalable.</p>
+        <ul>
+          <li data-i18n="c3a">Data warehouse design & build</li>
+          <li data-i18n="c3b">ETL/ELT pipeline engineering</li>
+          <li data-i18n="c3c">Cloud & on-prem architecture</li>
+        </ul>
+      </div>
+      <div class="cap">
+        <div class="idx">04</div>
+        <h3 data-i18n="c4h">Training & Enablement</h3>
+        <p data-i18n="c4p">Teams that understand their data outperform teams that outsource it.</p>
+        <ul>
+          <li data-i18n="c4a">Data literacy programs</li>
+          <li data-i18n="c4b">Hands-on AI workshops</li>
+          <li data-i18n="c4c">Analytics team coaching</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
-<section id="hakkimizda" style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+<section id="approach" style="background:var(--bg2)">
   <div class="wrap">
-    <div class="about">
+    <div class="sec-head">
       <div>
-        <h2>Hakkımızda</h2>
-        <p>Hestia Data, yapay zekâ eğitimi ve uygulamalı teknoloji geliştirme alanında faaliyet gösteren <strong>AI Work School</strong> ekosisteminin bir iştiraki olarak kurulmuştur.</p>
-        <p>Amacımız; eğitimde edinilen güncel yapay zekâ ve veri bilimi bilgisini, gerçek iş problemlerine uygulanabilir kurumsal çözümlere dönüştürmektir.</p>
+        <div class="no" data-i18n="a0">02 · Approach</div>
+        <h2 data-i18n="ah">How we deliver</h2>
       </div>
-      <div>
-        <div class="affiliate">
-          <div class="mark">AI<br>WS</div>
-          <div>
-            <b>AI Work School iştiraki</b>
-            <span>Hestia Data, AI Work School grup şirketlerinin veri ve analitik koludur.</span>
-          </div>
-        </div>
-      </div>
+      <p class="lead" data-i18n="al">A fixed, transparent delivery model. You see working output every sprint — not a slide deck at the end.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="n">WEEK 1</div><h3 data-i18n="a1h">Diagnose</h3><p data-i18n="a1p">We map your data landscape and pick the highest-ROI use case together.</p></div>
+      <div class="step"><div class="n">WEEKS 2–4</div><h3 data-i18n="a2h">Build</h3><p data-i18n="a2p">A working prototype on your real data, reviewed with you every week.</p></div>
+      <div class="step"><div class="n">WEEKS 5–8</div><h3 data-i18n="a3h">Productionize</h3><p data-i18n="a3p">Hardened, documented, monitored — running inside your environment.</p></div>
+      <div class="step"><div class="n">ONGOING</div><h3 data-i18n="a4h">Transfer</h3><p data-i18n="a4p">We train your team to own and extend the system. No lock-in.</p></div>
     </div>
   </div>
 </section>
 
-<section id="iletisim">
-  <div class="wrap">
-    <div class="contact">
-      <h2>İletişim</h2>
-      <p>Projeleriniz ve iş birliği için bize dilediğiniz kanaldan ulaşabilirsiniz.</p>
+<section id="about">
+  <div class="wrap split">
+    <div>
+      <div class="no" style="font-size:13px;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;margin-bottom:14px" data-i18n="ab0">03 · About</div>
+      <h2 style="margin-bottom:24px" data-i18n="abh">Born inside an AI school.<br>Built for business.</h2>
+      <p data-i18n="ab1">Hestia Data was founded within the AI Work School ecosystem — an organization that trains applied AI and data science talent on real industry problems.</p>
+      <p data-i18n="ab2">That origin shapes how we work: current methods, hands-on engineering, and solutions designed to be understood and owned by your team — not just delivered.</p>
+    </div>
+    <div class="badge-card">
       <div class="row">
-        <a class="pill" href="tel:+903129634953">📞 +90 312 963 49 53</a>
-        <a class="pill" href="mailto:info@hestiadata.net">✉️ info@hestiadata.net</a>
+        <div class="mark">AI<br>WS</div>
+        <div><b data-i18n="abb">An AI Work School Company</b><span data-i18n="abs">hestiadata.net · aiworkschool.com</span></div>
       </div>
+      <p data-i18n="abp">Hestia Data operates as the data & analytics arm of the AI Work School group, turning applied-AI education into enterprise-grade delivery.</p>
     </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="no" style="font-size:13px;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;margin-bottom:14px" data-i18n="k0">04 · Contact</div>
+    <h2 data-i18n="kh">Let's talk about your data.</h2>
+    <p class="lead" data-i18n="kl">One call is enough to scope your highest-value use case.</p>
+    <div class="contact-cards">
+      <a href="tel:+903129634953">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        +90 312 963 49 53
+      </a>
+      <a href="mailto:info@hestiadata.net">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+        info@hestiadata.net
+      </a>
+    </div>
+    <small data-i18n="kaddr">Ankara, Türkiye</small>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    © 2026 Hestia Data — Bir <a href="https://aiworkschool.com">AI Work School</a> iştirakidir. Tüm hakları saklıdır.
+    <span data-i18n-html="f1">© 2026 Hestia Data — An <a href="https://aiworkschool.com">AI Work School</a> company. All rights reserved.</span>
+    <span>info@hestiadata.net · +90 312 963 49 53</span>
   </div>
 </footer>
 
+<script>
+const T = {
+  en: {
+    tag:"An AI Work School Company", n1:"Capabilities", n2:"Approach", n3:"About", n4:"Contact",
+    kicker:"Hestia Data · An AI Work School Company",
+    h1:'Data is everywhere.<br><span class="accent">Decisions are not.</span>',
+    hero:"We build the analytics, applied AI and data infrastructure that turn raw operational data into executive decisions — measured in weeks, not years.",
+    cta1:"Start a Project", cta2:"Explore Capabilities",
+    s1:"Practice Areas", s2:"Delivery Focused", s3:"Native by Design",
+    c0:"01 · Capabilities", ch:"What we build", cl:"End-to-end data capability: from pipelines to models to the dashboards your board actually reads.",
+    c1h:"Data Analytics & BI", c1p:"Decision-grade reporting and self-service analytics for leadership and operations.", c1a:"Executive dashboards & KPI systems", c1b:"Automated management reporting", c1c:"Data quality & governance",
+    c2h:"Applied AI & ML", c2p:"Production machine learning that solves real business problems — not demos.", c2a:"Forecasting & demand planning", c2b:"Classification & anomaly detection", c2c:"LLM-powered process automation",
+    c3h:"Data Engineering", c3p:"The foundation everything else depends on: reliable, documented, scalable.", c3a:"Data warehouse design & build", c3b:"ETL/ELT pipeline engineering", c3c:"Cloud & on-prem architecture",
+    c4h:"Training & Enablement", c4p:"Teams that understand their data outperform teams that outsource it.", c4a:"Data literacy programs", c4b:"Hands-on AI workshops", c4c:"Analytics team coaching",
+    a0:"02 · Approach", ah:"How we deliver", al:"A fixed, transparent delivery model. You see working output every sprint — not a slide deck at the end.",
+    a1h:"Diagnose", a1p:"We map your data landscape and pick the highest-ROI use case together.",
+    a2h:"Build", a2p:"A working prototype on your real data, reviewed with you every week.",
+    a3h:"Productionize", a3p:"Hardened, documented, monitored — running inside your environment.",
+    a4h:"Transfer", a4p:"We train your team to own and extend the system. No lock-in.",
+    ab0:"03 · About", abh:"Born inside an AI school.<br>Built for business.",
+    ab1:"Hestia Data was founded within the AI Work School ecosystem — an organization that trains applied AI and data science talent on real industry problems.",
+    ab2:"That origin shapes how we work: current methods, hands-on engineering, and solutions designed to be understood and owned by your team — not just delivered.",
+    abb:"An AI Work School Company", abs:"hestiadata.net · aiworkschool.com",
+    abp:"Hestia Data operates as the data & analytics arm of the AI Work School group, turning applied-AI education into enterprise-grade delivery.",
+    k0:"04 · Contact", kh:"Let's talk about your data.", kl:"One call is enough to scope your highest-value use case.", kaddr:"Ankara, Türkiye",
+    f1:'© 2026 Hestia Data — An <a href="https://aiworkschool.com">AI Work School</a> company. All rights reserved.'
+  },
+  tr: {
+    tag:"Bir AI Work School Şirketi", n1:"Yetkinlikler", n2:"Yaklaşım", n3:"Hakkımızda", n4:"İletişim",
+    kicker:"Hestia Data · Bir AI Work School Şirketi",
+    h1:'Veri her yerde.<br><span class="accent">Karar değil.</span>',
+    hero:"Ham operasyon verisini yönetim kararına dönüştüren analitik, uygulamalı yapay zekâ ve veri altyapısı kuruyoruz — yıllarla değil, haftalarla ölçülen sürelerde.",
+    cta1:"Proje Başlatın", cta2:"Yetkinlikleri Keşfedin",
+    s1:"Uzmanlık Alanı", s2:"Teslimat Odaklı", s3:"Doğal Yapay Zekâ",
+    c0:"01 · Yetkinlikler", ch:"Neler inşa ediyoruz", cl:"Uçtan uca veri yetkinliği: veri hatlarından modellere, yönetim kurulunuzun gerçekten okuduğu panolara kadar.",
+    c1h:"Veri Analitiği & İş Zekâsı", c1p:"Yönetim ve operasyon için karar kalitesinde raporlama ve self-servis analitik.", c1a:"Yönetim panoları & KPI sistemleri", c1b:"Otomatik yönetim raporlaması", c1c:"Veri kalitesi & yönetişimi",
+    c2h:"Uygulamalı Yapay Zekâ & ML", c2p:"Gerçek iş problemlerini çözen üretim seviyesinde makine öğrenmesi — demo değil.", c2a:"Tahminleme & talep planlama", c2b:"Sınıflandırma & anomali tespiti", c2c:"LLM destekli süreç otomasyonu",
+    c3h:"Veri Mühendisliği", c3p:"Diğer her şeyin dayandığı temel: güvenilir, dokümante, ölçeklenebilir.", c3a:"Veri ambarı tasarımı & kurulumu", c3b:"ETL/ELT hat mühendisliği", c3c:"Bulut & yerinde mimari",
+    c4h:"Eğitim & Yetkinlik", c4p:"Verisini anlayan ekipler, dışarıya devreden ekipleri geçer.", c4a:"Veri okuryazarlığı programları", c4b:"Uygulamalı yapay zekâ atölyeleri", c4c:"Analitik ekip koçluğu",
+    a0:"02 · Yaklaşım", ah:"Nasıl teslim ediyoruz", al:"Sabit ve şeffaf bir teslimat modeli. Her sprintte çalışan çıktı görürsünüz — sonda gelen bir sunum değil.",
+    a1h:"Teşhis", a1p:"Veri haritanızı çıkarır, birlikte en yüksek getirili kullanım senaryosunu seçeriz.",
+    a2h:"İnşa", a2p:"Gerçek verinizle çalışan bir prototip; her hafta sizinle gözden geçirilir.",
+    a3h:"Üretime Alma", a3p:"Sağlamlaştırılmış, dokümante ve izlenen sistem — kendi ortamınızda çalışır.",
+    a4h:"Devir", a4p:"Ekibinizi sistemi sahiplenecek ve geliştirecek şekilde eğitiriz. Bağımlılık yok.",
+    ab0:"03 · Hakkımızda", abh:"Bir yapay zekâ okulunun içinde doğdu.<br>İş dünyası için inşa edildi.",
+    ab1:"Hestia Data, gerçek sanayi problemleri üzerinde uygulamalı yapay zekâ ve veri bilimi yeteneği yetiştiren AI Work School ekosistemi içinde kuruldu.",
+    ab2:"Bu köken çalışma biçimimizi şekillendirir: güncel yöntemler, uygulamalı mühendislik ve ekibiniz tarafından anlaşılıp sahiplenilecek çözümler.",
+    abb:"Bir AI Work School Şirketi", abs:"hestiadata.net · aiworkschool.com",
+    abp:"Hestia Data, AI Work School grubunun veri ve analitik kolu olarak faaliyet gösterir; uygulamalı yapay zekâ eğitimini kurumsal teslimata dönüştürür.",
+    k0:"04 · İletişim", kh:"Verinizi konuşalım.", kl:"En yüksek değerli kullanım senaryonuzu belirlemek için tek bir görüşme yeterli.", kaddr:"Ankara, Türkiye",
+    f1:'© 2026 Hestia Data — Bir <a href="https://aiworkschool.com">AI Work School</a> şirketidir. Tüm hakları saklıdır.'
+  }
+};
+function setLang(l){
+  document.documentElement.lang = l;
+  document.querySelectorAll("[data-i18n]").forEach(e=>{ if(T[l][e.dataset.i18n]) e.innerText = T[l][e.dataset.i18n]; });
+  document.querySelectorAll("[data-i18n-html]").forEach(e=>{ if(T[l][e.dataset.i18nHtml]) e.innerHTML = T[l][e.dataset.i18nHtml]; });
+  document.getElementById("btn-en").classList.toggle("on", l==="en");
+  document.getElementById("btn-tr").classList.toggle("on", l==="tr");
+  try{ localStorage.setItem("hd-lang", l); }catch(e){}
+}
+try{ const s=localStorage.getItem("hd-lang"); if(s==="tr") setLang("tr"); }catch(e){}
+</script>
 </body>
 </html>
