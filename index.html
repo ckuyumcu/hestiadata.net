@@ -12,7 +12,7 @@
 <style>
 :root{
   --bg:#081020; --bg2:#0c1729; --panel:#12203a; --line:rgba(148,163,184,.22);
-  --ink:#f0f5fc; --muted:#a3b6cf; --accent:#22d3ee; --accent2:#38bdf8; --green:#34d399;
+  --ink:#f0f5fc; --muted:#a3b6cf; --accent:#22d3ee; --accent2:#38bdf8; --green:#34d399; --red:#f43f5e;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -58,13 +58,14 @@ h1 .accent{background:linear-gradient(92deg,var(--accent),var(--accent2));-webki
 .hero-stats{display:flex;gap:52px;margin-top:74px;flex-wrap:wrap}
 .stat b{display:block;font-size:36px;font-weight:700;letter-spacing:-.01em;font-family:"Space Grotesk"}
 .stat b i{font-style:normal;color:var(--accent)}
+.hero-stats .stat:nth-child(2) b i{color:var(--red)}
 .stat span{font-size:11.5px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase}
 
 /* radar panel */
 .radar{position:relative;background:linear-gradient(160deg,rgba(22,38,66,.92),rgba(10,18,34,.94));border:1px solid rgba(34,211,238,.45);border-radius:22px;padding:26px;box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 50px rgba(34,211,238,.10),inset 0 0 60px rgba(34,211,238,.06)}
 .radar-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-size:11px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase}
-.radar-head .live{display:flex;align-items:center;gap:8px;color:var(--green)}
-.radar-head .live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);animation:blink 1.6s infinite}
+.radar-head .live{display:flex;align-items:center;gap:8px;color:var(--red);font-weight:700}
+.radar-head .live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 12px var(--red);animation:blink 1.6s infinite}
 @keyframes blink{50%{opacity:.35}}
 .radar svg{width:100%;height:auto;display:block}
 .sweep{transform-origin:300px 190px;animation:sweep 7s linear infinite}
@@ -80,6 +81,7 @@ h1 .accent{background:linear-gradient(92deg,var(--accent),var(--accent2));-webki
 @keyframes mq{to{transform:translateX(-50%)}}
 .marquee span{font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:56px}
 .marquee b{color:var(--accent);font-weight:400}
+.marquee span b:nth-of-type(even){color:var(--red)}
 
 /* ---------- SECTIONS ---------- */
 section{padding:120px 0;border-top:1px solid var(--line);position:relative}
@@ -123,8 +125,8 @@ h2{font-size:clamp(30px,3.8vw,50px);letter-spacing:-.02em;font-weight:700;line-h
 .ph{position:relative;height:120px;border-radius:10px;background:linear-gradient(140deg,#1b3358,#10203a);border:1px solid rgba(148,163,184,.3);overflow:hidden;display:flex;align-items:flex-end;padding:10px}
 .ph::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(148,163,184,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(148,163,184,.08) 1px,transparent 1px);background-size:22px 22px}
 .ph .geo{position:relative;font-size:10.5px;color:var(--green);background:rgba(5,10,20,.8);border:1px solid rgba(52,211,153,.4);border-radius:6px;padding:4px 9px;letter-spacing:.05em}
-.ph .crosshair{position:absolute;top:38%;left:58%;width:26px;height:26px;border:1.5px solid var(--accent);border-radius:50%;opacity:.8}
-.ph .crosshair::after{content:"";position:absolute;inset:9px;background:var(--accent);border-radius:50%}
+.ph .crosshair{position:absolute;top:38%;left:58%;width:26px;height:26px;border:1.5px solid var(--red);border-radius:50%;opacity:.9;box-shadow:0 0 14px rgba(244,63,94,.5)}
+.ph .crosshair::after{content:"";position:absolute;inset:9px;background:var(--red);border-radius:50%}
 table.mock{width:100%;border-collapse:collapse;font-size:11.5px;color:var(--muted)}
 table.mock th{color:var(--accent);text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);font-weight:600;letter-spacing:.06em;font-size:10.5px;text-transform:uppercase}
 table.mock td{padding:6px 8px;border-bottom:1px dashed rgba(148,163,184,.12)}
@@ -264,7 +266,7 @@ footer a.accent{color:var(--accent);text-decoration:none}
           <g><circle cx="150" cy="215" r="4" fill="#22d3ee"/><circle class="ping" cx="150" cy="215" r="6" fill="none" stroke="#22d3ee"/><text x="162" y="219">İZMİR</text></g>
           <g><circle cx="320" cy="300" r="4" fill="#22d3ee"/><circle class="ping" cx="320" cy="300" r="6" fill="none" stroke="#22d3ee"/><text x="332" y="304">ANTALYA</text></g>
           <g><circle cx="380" cy="255" r="4" fill="#22d3ee"/><circle class="ping" cx="380" cy="255" r="6" fill="none" stroke="#22d3ee"/><text x="392" y="259">ADANA</text></g>
-          <g><circle cx="330" cy="80" r="4" fill="#22d3ee"/><circle class="ping" cx="330" cy="80" r="6" fill="none" stroke="#22d3ee"/><text x="342" y="84">TRABZON</text></g>
+          <g><circle cx="330" cy="80" r="4" fill="#22d3ee"/><circle class="ping" cx="330" cy="80" r="6" fill="none" stroke="#22d3ee"/><text x="342" y="84">RİZE</text></g>
           <g><circle cx="440" cy="210" r="4" fill="#22d3ee"/><circle class="ping" cx="440" cy="210" r="6" fill="none" stroke="#22d3ee"/><text x="452" y="214">DİYARBAKIR</text></g>
         </g>
       </svg>
@@ -461,8 +463,8 @@ footer a.accent{color:var(--accent);text-decoration:none}
       </a>
     </div>
     <div class="phone-line">
+      <span data-i18n="kphone2">Phone:</span>
       <a href="tel:+903129634953">+90 312 963 49 53</a>
-      <span data-i18n="kphone">Calls are answered by our AI assistant — for a detailed answer, email us.</span>
     </div>
     <small class="addr" data-i18n="kaddr">Ankara, Türkiye</small>
   </div>
@@ -529,7 +531,7 @@ const T = {
     ab2:"As an AI Work School venture, we combine trained field collectors with AI-assisted quality control — every photo, document and dataset is verified before it reaches you.",
     abb:"An AI Work School Venture", abs:"hestiadata.net · aiworkschool.com",
     abp:"Hestia Data operates as the field-data collection arm of the AI Work School group, serving research firms, AI companies and audit networks worldwide.",
-    k0:"06 · Contact", kh:"Tell us what you need from Türkiye.", kl:"One email with your brief — a fixed quote within 24 hours.", kmail:"Fastest channel — every brief gets a fixed quote within 24 hours.", kphone:"Calls are answered by our AI assistant — for a detailed answer, email us.", kaddr:"Ankara, Türkiye",
+    k0:"06 · Contact", kh:"Tell us what you need from Türkiye.", kl:"One email with your brief — a fixed quote within 24 hours.", kmail:"Fastest channel — every brief gets a fixed quote within 24 hours.", kphone2:"Phone:", kaddr:"Ankara, Türkiye",
     fdesc:"Field data collection from Türkiye for international research, audit and AI teams.", fgroup:"Group Ventures", flegal:"Legal", fpr:"Privacy Policy", fte:"Terms of Service", fcon:"Contact",
     f1:'© 2026 Hestia Data — An <a class="accent" href="https://aiworkschool.com">AI Work School</a> venture. All rights reserved.'
   },
@@ -561,7 +563,7 @@ const T = {
     ab2:"Bir AI Work School iştiraki olarak eğitimli saha toplayıcılarını yapay zekâ destekli kalite kontrolle birleştiriyoruz — her fotoğraf, belge ve veri seti size ulaşmadan önce doğrulanır.",
     abb:"Bir AI Work School İştiraki", abs:"hestiadata.net · aiworkschool.com",
     abp:"Hestia Data, AI Work School grubunun saha verisi toplama kolu olarak dünya çapında araştırma firmalarına, yapay zekâ şirketlerine ve denetim ağlarına hizmet verir.",
-    k0:"06 · İletişim", kh:"Türkiye'den neye ihtiyacınız var, söyleyin.", kl:"Brifinizi içeren tek bir e-posta — 24 saat içinde sabit fiyat teklifi.", kmail:"En hızlı kanal — her brif 24 saat içinde sabit fiyat teklifi alır.", kphone:"Telefonları yapay zekâ asistanımız karşılar — detaylı yanıt için bize yazın.", kaddr:"Ankara, Türkiye",
+    k0:"06 · İletişim", kh:"Türkiye'den neye ihtiyacınız var, söyleyin.", kl:"Brifinizi içeren tek bir e-posta — 24 saat içinde sabit fiyat teklifi.", kmail:"En hızlı kanal — her brif 24 saat içinde sabit fiyat teklifi alır.", kphone2:"Telefon:", kaddr:"Ankara, Türkiye",
     fdesc:"Uluslararası araştırma, denetim ve yapay zekâ ekipleri için Türkiye'den saha verisi toplama.", fgroup:"Grup İştirakleri", flegal:"Yasal", fpr:"Gizlilik Politikası", fte:"Hizmet Şartları", fcon:"İletişim",
     f1:'© 2026 Hestia Data — Bir <a class="accent" href="https://aiworkschool.com">AI Work School</a> iştirakidir. Tüm hakları saklıdır.'
   }
