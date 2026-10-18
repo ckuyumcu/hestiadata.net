@@ -110,6 +110,7 @@ h2{font-size:clamp(30px,3.8vw,50px);letter-spacing:-.02em;font-weight:700;line-h
 .svc li::before{content:"→";position:absolute;left:0;color:var(--accent)}
 .pkg{display:flex;flex-direction:column}
 .pkg.feat{border-color:var(--accent);box-shadow:0 0 0 1px rgba(34,211,238,.35)}
+.pkg .sample{display:block;font-size:13px;color:var(--accent);margin:14px 0 6px;text-decoration:underline}
 .pkg .tagline{display:inline-block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;font-family:"Space Grotesk"}
 .vend{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:10px}
 .vend div{border:1px solid var(--line);border-radius:14px;padding:22px 22px}
@@ -471,6 +472,7 @@ footer a.accent{color:var(--accent);text-decoration:none}
           <li data-i18n="g4b">On-site visit with geotagged, timestamped photos</li>
           <li data-i18n="g4c">One-page risk summary</li>
         </ul>
+        <a class="sample" href="sample-supplier-proof-pack.pdf" target="_blank" rel="noopener" data-i18n="g4s">See a sample report (PDF)</a>
         <a class="order" href="mailto:info@hestiadata.net?subject=Supplier%20Proof%20Pack" data-i18n="gorder">Order by email</a>
       </div>
       <div class="svc pkg rv">
@@ -639,7 +641,7 @@ const T = {
     g1h:"Supplier verification visit", g1p:"One on-site visit to confirm the business exists and operates at its stated address.", g1a:"Photos and video of the site", g1b:"Address and signage check", g1c:"Short English report (not a full factory audit)",
     g2h:"Company document pack", g2p:"For one company registered in Türkiye.", g2a:"Public registry documents", g2b:"English summary",
     g3h:"Shelf proof", g3u:"per location", g3m:"Minimum 10 locations", g3p:"Photo proof from the outlets you choose: pharmacies, grocers, dealers, hardware stores.", g3a:"Geotagged shelf photo per outlet", g3b:"Price, placement and out-of-stock notes",
-    g4t:"Most complete", g4h:"Supplier Proof Pack", g4p:"Documents and an on-site visit for one Turkish supplier, in one order.", g4a:"Trade registry gazette records + English summary", g4b:"On-site visit with geotagged, timestamped photos", g4c:"One-page risk summary",
+    g4t:"Most complete", g4s:"See a sample report (PDF)", g4h:"Supplier Proof Pack", g4p:"Documents and an on-site visit for one Turkish supplier, in one order.", g4a:"Trade registry gazette records + English summary", g4b:"On-site visit with geotagged, timestamped photos", g4c:"One-page risk summary",
     v0:"For vendor managers", vh:"Easy to onboard as a supplier", vl:"What procurement teams usually ask us before the first order.", v1h:"Invoicing", v1p:"Invoices in USD or EUR, paid by bank transfer. Vendor forms and tax forms completed on request.", v2h:"Confidentiality", v2p:"Mutual NDA on request before you share a brief or a supplier name.", v3h:"Personal data", v3p:"Faces and licence plates are blurred by default. No personal data is collected unless your brief needs it with documented consent (KVKK / GDPR).", v4h:"Coverage", v4p:"Ankara visits within the week. Other provinces are scheduled and quoted within 24 hours.",
     gorder:"Order by email", gbig:"Larger projects: fixed quote within 24 hours.",
     ab0:"06 · Why Us", abh:"You can't collect this data from abroad.<br>We're already here.",
@@ -679,7 +681,7 @@ const T = {
     g1h:"Tedarikçi doğrulama ziyareti", g1p:"İşletmenin beyan ettiği adreste var olduğunu ve çalıştığını doğrulayan tek bir yerinde ziyaret.", g1a:"Tesisin fotoğraf ve videosu", g1b:"Adres ve tabela kontrolü", g1c:"Kısa İngilizce rapor (tam fabrika denetimi değildir)",
     g2h:"Şirket belge paketi", g2p:"Türkiye'de kayıtlı tek bir şirket için.", g2a:"Kamuya açık sicil belgeleri", g2b:"İngilizce özet",
     g3h:"Raf kanıtı", g3u:"lokasyon başına", g3m:"En az 10 lokasyon", g3p:"Seçtiğiniz satış noktalarından fotoğraflı kanıt: eczane, bakkal, bayi, yapı market.", g3a:"Her nokta için konum etiketli raf fotoğrafı", g3b:"Fiyat, raf yeri ve stok yokluğu notları",
-    g4t:"En kapsamlı", g4h:"Tedarikçi Kanıt Paketi", g4p:"Bir Türk tedarikçi için evrak ve yerinde ziyaret, tek siparişte.", g4a:"Ticaret sicili gazetesi kayıtları + İngilizce özet", g4b:"Konum ve zaman damgalı fotoğraflarla yerinde ziyaret", g4c:"Tek sayfalık risk özeti",
+    g4t:"En kapsamlı", g4s:"Örnek raporu görün (PDF)", g4h:"Tedarikçi Kanıt Paketi", g4p:"Bir Türk tedarikçi için evrak ve yerinde ziyaret, tek siparişte.", g4a:"Ticaret sicili gazetesi kayıtları + İngilizce özet", g4b:"Konum ve zaman damgalı fotoğraflarla yerinde ziyaret", g4c:"Tek sayfalık risk özeti",
     v0:"Tedarikçi yöneticileri için", vh:"Tedarikçi olarak kaydetmesi kolay", vl:"Satın alma ekiplerinin ilk siparişten önce genelde sorduğu konular.", v1h:"Faturalama", v1p:"USD veya EUR fatura, banka havalesiyle ödeme. Tedarikçi ve vergi formları talep üzerine doldurulur.", v2h:"Gizlilik", v2p:"Brif ya da tedarikçi adı paylaşmadan önce talep üzerine karşılıklı gizlilik sözleşmesi (NDA).", v3h:"Kişisel veri", v3p:"Yüzler ve plakalar varsayılan olarak bulanıklaştırılır. Brif gerektirmedikçe ve belgeli açık rıza olmadan kişisel veri toplanmaz (KVKK / GDPR).", v4h:"Kapsama", v4p:"Ankara ziyaretleri hafta içinde. Diğer iller 24 saat içinde planlanır ve fiyatlandırılır.",
     gorder:"E-postayla sipariş", gbig:"Daha büyük projeler: 24 saat içinde sabit fiyat teklifi.",
     ab0:"06 · Neden Biz", abh:"Bu veriyi yurt dışından toplayamazsınız.<br>Biz zaten buradayız.",
