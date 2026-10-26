@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hestia Data · Türkiye's On-Demand Field Desk</title>
-<meta name="description" content="Hestia Data — Türkiye's on-demand field desk. Registry documents, supplier visits and English reports. Location, access, scope and delivery date are confirmed in a written quote.">
+<title>HESTIA Data — AI Training Data & Field Operations from Türkiye</title>
+<meta name="description" content="HESTIA Data collects real-world data from Türkiye for international teams: consented egocentric household video for robot foundation models, plus field capture, document retrieval and supplier verification delivered in English.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23070d18'/><path d='M28 70 L28 30 L36 30 L36 46 L64 46 L64 30 L72 30 L72 70 L64 70 L64 54 L36 54 L36 70 Z' fill='%2322d3ee'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,703 +12,234 @@
 <style>
 :root{
   --bg:#081020; --bg2:#0c1729; --panel:#12203a; --line:rgba(148,163,184,.22);
-  --ink:#f0f5fc; --muted:#a3b6cf; --accent:#22d3ee; --accent2:#38bdf8; --green:#34d399; --red:#f43f5e;
+  --ink:#f0f5fc; --muted:#a3b6cf; --accent:#22d3ee; --accent2:#38bdf8; --am:#f59e0b; --green:#34d399;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:"Inter",-apple-system,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{font-family:"Inter",-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 h1,h2,h3,.sg{font-family:"Space Grotesk","Inter",sans-serif}
-.wrap{max-width:1240px;margin:0 auto;padding:0 36px}
-::selection{background:var(--accent);color:#04121a}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
 a{color:inherit}
+::selection{background:var(--accent);color:#04121a}
 
-/* ---------- NAV ---------- */
-header{position:fixed;top:0;left:0;right:0;z-index:60;background:rgba(5,10,20,.78);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-.nav{display:flex;align-items:center;justify-content:space-between;height:74px}
-.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
-.logo-mark{width:40px;height:40px;border-radius:11px;background:linear-gradient(135deg,#0e2a3a,#070d18);border:1px solid rgba(34,211,238,.4);display:flex;align-items:center;justify-content:center;box-shadow:0 0 22px rgba(34,211,238,.18)}
-.logo b{font-size:17px;letter-spacing:.07em;font-family:"Space Grotesk"}
-.logo small{display:block;font-size:9.5px;letter-spacing:.22em;color:var(--muted);text-transform:uppercase}
-.nav-links{display:flex;gap:32px;align-items:center}
-.nav-links a{color:var(--muted);text-decoration:none;font-size:12.5px;letter-spacing:.15em;text-transform:uppercase;font-weight:500;transition:color .2s}
-.nav-links a:hover{color:var(--accent)}
-.lang{display:flex;border:1px solid var(--line);border-radius:7px;overflow:hidden;margin-left:12px}
-.lang button{background:transparent;border:0;color:var(--muted);font-size:12px;letter-spacing:.1em;padding:8px 15px;cursor:pointer;font-family:inherit}
-.lang button.on{background:var(--accent);color:#04121a;font-weight:700}
-.burger{display:none}
+header{position:fixed;top:0;left:0;right:0;z-index:60;background:rgba(5,10,20,.8);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:"Space Grotesk";font-weight:700;font-size:1.1rem}
+.logo-mark{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;color:#04121a;font-weight:800}
+.nav-links{display:flex;gap:22px;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.9rem}
+.nav-links a:hover{color:#fff}
+.btn{display:inline-block;background:var(--accent);color:#04121a;font-weight:600;padding:.65rem 1.3rem;border-radius:.7rem;text-decoration:none;border:0;cursor:pointer;font-size:.95rem;font-family:inherit}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.am{background:var(--am)}
+@media(max-width:820px){.nav-links{display:none}}
 
-/* ---------- HERO ---------- */
-.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;
-  background:radial-gradient(1100px 600px at 78% 18%,rgba(34,211,238,.16),transparent 62%),
-             radial-gradient(800px 600px at 8% 92%,rgba(56,189,248,.11),transparent 60%),var(--bg)}
-.hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(148,163,184,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(148,163,184,.05) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 85% 75% at 50% 38%,#000 25%,transparent 78%)}
-.hero-inner{position:relative;width:100%;padding:150px 0 100px;display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center}
-@media(max-width:980px){.hero-inner{grid-template-columns:1fr;padding-top:130px}}
-.kicker{display:flex;align-items:center;gap:14px;font-size:12.5px;letter-spacing:.26em;color:var(--accent);text-transform:uppercase;margin-bottom:34px;font-weight:600}
-.kicker::before{content:"";width:46px;height:2px;background:var(--accent);box-shadow:0 0 12px var(--accent)}
-h1{font-size:clamp(40px,5.4vw,76px);line-height:1.05;letter-spacing:-.02em;font-weight:700}
-h1 .accent{background:linear-gradient(92deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p.sub{max-width:620px;color:var(--muted);font-size:17.5px;margin:30px 0 42px}
-.cta{display:flex;gap:16px;flex-wrap:wrap}
-.cta a{padding:16px 34px;border-radius:9px;text-decoration:none;font-size:13px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;transition:.25s;font-family:"Space Grotesk"}
-.cta .primary{background:var(--accent);color:#04121a;box-shadow:0 8px 32px rgba(34,211,238,.28)}
-.cta .primary:hover{background:var(--accent2);transform:translateY(-2px);box-shadow:0 14px 44px rgba(34,211,238,.4)}
-.cta .ghost{border:1px solid var(--line);color:var(--ink)}
-.cta .ghost:hover{border-color:var(--accent);color:var(--accent)}
-.hero-stats{display:flex;gap:52px;margin-top:74px;flex-wrap:wrap}
-.stat b{display:block;font-size:36px;font-weight:700;letter-spacing:-.01em;font-family:"Space Grotesk"}
-.stat b i{font-style:normal;color:var(--accent)}
-.hero-stats .stat:nth-child(2) b i{color:var(--red)}
-.stat span{font-size:11.5px;letter-spacing:.16em;color:var(--muted);text-transform:uppercase}
+.hero{text-align:center;padding:9.5rem 0 4.5rem;background:radial-gradient(55% 45% at 50% 0%,rgba(34,211,238,.13),transparent)}
+.pill{display:inline-block;border:1px solid rgba(34,211,238,.45);color:var(--accent);border-radius:999px;padding:.3rem 1rem;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase}
+h1{font-size:clamp(2.1rem,5vw,3.6rem);line-height:1.15;margin:1.3rem auto .8rem;max-width:52rem}
+h1 span{color:var(--accent)}
+.lead{max-width:46rem;margin:0 auto;color:var(--muted);font-size:1.12rem}
+.cta{display:flex;gap:.8rem;justify-content:center;margin-top:2rem;flex-wrap:wrap}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;max-width:62rem;margin:3.6rem auto 0}
+.stat{border:1px solid var(--line);background:rgba(18,32,58,.55);border-radius:.9rem;padding:1.05rem}
+.stat b{display:block;color:var(--accent);font-size:1.12rem}
+.stat small{color:var(--muted)}
+@media(min-width:820px){.stats{grid-template-columns:repeat(4,1fr)}}
 
-/* radar panel */
-.radar{position:relative;background:linear-gradient(160deg,rgba(22,38,66,.92),rgba(10,18,34,.94));border:1px solid rgba(34,211,238,.45);border-radius:22px;padding:26px;box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 50px rgba(34,211,238,.10),inset 0 0 60px rgba(34,211,238,.06)}
-.radar-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;font-size:11px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase}
-.radar-head .live{display:flex;align-items:center;gap:8px;color:var(--red);font-weight:700}
-.radar-head .live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 12px var(--red);animation:blink 1.6s infinite}
-@keyframes blink{50%{opacity:.35}}
-.radar svg{width:100%;height:auto;display:block}
-.sweep{transform-origin:300px 190px;animation:sweep 7s linear infinite}
-@keyframes sweep{to{transform:rotate(360deg)}}
-.ping{animation:ping 2.6s ease-out infinite;transform-origin:center;transform-box:fill-box}
-@keyframes ping{0%{opacity:.9;transform:scale(.4)}80%{opacity:0;transform:scale(2.6)}100%{opacity:0}}
-.radar-foot{display:flex;justify-content:space-between;margin-top:14px;font-size:11.5px;color:var(--muted);letter-spacing:.08em}
-.radar-foot b{color:var(--accent);font-family:"Space Grotesk"}
+.split{display:grid;gap:1.2rem;margin-top:2.4rem}
+@media(min-width:900px){.split{grid-template-columns:1fr 1fr}}
+.offer{border:1px solid var(--line);background:var(--panel);border-radius:1.1rem;padding:1.8rem;text-align:left}
+.offer h3{font-size:1.35rem;margin:.4rem 0 .6rem}
+.offer p{color:var(--muted);font-size:.95rem}
+.tag{display:inline-block;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:.25rem .8rem;border:1px solid var(--line);color:var(--muted)}
+.tag.cy{color:var(--accent);border-color:rgba(34,211,238,.4)}
+.tag.am{color:var(--am);border-color:rgba(245,158,11,.4)}
+.offer ul{list-style:none;margin-top:1rem}
+.offer li{padding:.45rem 0 .45rem 1.5rem;position:relative;color:var(--muted);font-size:.92rem;border-top:1px solid rgba(148,163,184,.1)}
+.offer li::before{content:"✓";position:absolute;left:0;color:var(--green);font-weight:700}
 
-/* ---------- MARQUEE ---------- */
-.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg2);overflow:hidden;padding:18px 0}
-.marquee-track{display:flex;gap:56px;white-space:nowrap;animation:mq 30s linear infinite;width:max-content}
-@keyframes mq{to{transform:translateX(-50%)}}
-.marquee span{font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:56px}
-.marquee b{color:var(--accent);font-weight:400}
-.marquee span b:nth-of-type(even){color:var(--red)}
+section{padding:4.6rem 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(1.6rem,3.4vw,2.2rem);margin-bottom:.5rem}
+.sub{color:var(--muted);max-width:46rem}
+.grid{display:grid;gap:1.1rem;margin-top:2.2rem}
+@media(min-width:820px){.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}.g2{grid-template-columns:repeat(2,1fr)}}
+.card{border:1px solid var(--line);background:rgba(18,32,58,.55);border-radius:1rem;padding:1.4rem}
+.card h3{font-size:1.06rem;margin:.5rem 0 .35rem}
+.card p{color:var(--muted);font-size:.9rem}
+.ico{color:var(--accent);font-size:1.3rem}
+.task{display:flex;gap:.6rem;align-items:center;border:1px solid var(--line);background:var(--bg2);border-radius:.6rem;padding:.75rem 1rem;font-size:.9rem}
+.task::before{content:"✓";color:var(--green);font-weight:700}
 
-/* ---------- SECTIONS ---------- */
-section{padding:120px 0;border-top:1px solid var(--line);position:relative}
-.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-bottom:64px;flex-wrap:wrap}
-.no{font-size:13px;letter-spacing:.22em;color:var(--accent);text-transform:uppercase;font-weight:600;margin-bottom:16px}
-h2{font-size:clamp(30px,3.8vw,50px);letter-spacing:-.02em;font-weight:700;line-height:1.1}
-.lead{color:var(--muted);max-width:540px;font-size:16.5px}
+.steps{counter-reset:s}
+.step{border:1px solid var(--line);background:rgba(18,32,58,.55);border-radius:1rem;padding:1.4rem;position:relative}
+.step .n{color:var(--accent);font-weight:700;font-family:"Space Grotesk";font-size:.85rem}
+.step h3{font-size:1.15rem;margin:.25rem 0 .35rem}
+.step p{color:var(--muted);font-size:.9rem}
 
-/* reveal */
-.rv{opacity:0;transform:translateY(28px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
-.rv.on{opacity:1;transform:none}
+.cities{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.4rem}
+.city{border:1px solid var(--line);border-radius:999px;padding:.35rem .95rem;font-size:.85rem;color:var(--muted)}
 
-/* services */
-.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:22px}
-.svc{position:relative;background:linear-gradient(165deg,#14233f,#0d1830);border:1px solid rgba(148,163,184,.25);border-radius:18px;padding:38px 32px;overflow:hidden;transition:.3s}
-.svc::after{content:"";position:absolute;inset:0;background:radial-gradient(400px 200px at 50% -10%,rgba(34,211,238,.14),transparent 70%);opacity:.45;transition:.35s}
-.svc:hover{transform:translateY(-6px);border-color:rgba(34,211,238,.55);box-shadow:0 24px 60px rgba(0,0,0,.5),0 0 40px rgba(34,211,238,.08)}
-.svc:hover::after{opacity:1}
-.svc .icon{width:54px;height:54px;border-radius:14px;background:rgba(34,211,238,.09);border:1px solid rgba(34,211,238,.3);display:flex;align-items:center;justify-content:center;margin-bottom:26px}
-.svc .icon svg{width:26px;height:26px;stroke:var(--accent);fill:none;stroke-width:1.7}
-.svc .idx{position:absolute;top:26px;right:28px;font-size:12px;letter-spacing:.2em;color:var(--muted);font-family:"Space Grotesk"}
-.svc h3{font-size:20px;margin-bottom:12px;font-weight:600}
-.svc>p{font-size:14.5px;color:var(--muted)}
-.svc ul{list-style:none;margin-top:20px}
-.svc li{font-size:13.5px;color:var(--muted);padding:8px 0 8px 22px;position:relative;border-top:1px dashed var(--line)}
-.svc li::before{content:"→";position:absolute;left:0;color:var(--accent)}
-.pkg{display:flex;flex-direction:column}
-.pkg.feat{border-color:var(--accent);box-shadow:0 0 0 1px rgba(34,211,238,.35)}
-.pkg .sample{display:block;font-size:13px;color:var(--accent);margin:14px 0 6px;text-decoration:underline}
-.pkg .tagline{display:inline-block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;font-family:"Space Grotesk"}
-.vend{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:10px}
-.vend div{border:1px solid var(--line);border-radius:14px;padding:22px 22px}
-.vend b{display:block;margin-bottom:8px;font-size:15px}
-.vend p{font-size:13.5px;color:var(--muted);margin:0}
-.pkg .price{font-family:"Space Grotesk";font-size:40px;font-weight:700;color:var(--accent);line-height:1.1;margin:4px 0 2px}
-.pkg .price small{font-size:14px;font-weight:500;color:var(--muted);margin-left:6px;font-family:"Inter",sans-serif}
-.pkg .min{font-size:13px;color:var(--muted);margin-bottom:4px}
-.pkg ul{flex:1}
-.pkg .order{position:relative;z-index:1;display:inline-block;margin-top:24px;align-self:flex-start;padding:11px 20px;border-radius:10px;border:1px solid var(--accent);color:var(--accent);text-decoration:none;font-weight:600;font-size:14px}
-.pkg .order:hover{background:var(--accent);color:#04121a}
-.pkg-note{margin-top:34px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;font-size:16px}
-.pkg-note b{font-weight:600}
-.pkg-note a{color:var(--accent);text-decoration:none;font-weight:600}
+details{border:1px solid var(--line);border-radius:.8rem;background:rgba(18,32,58,.55);margin-top:.7rem}
+summary{cursor:pointer;padding:1rem 1.2rem;font-weight:600;font-size:.95rem;list-style:none}
+summary::before{content:"+";color:var(--accent);margin-right:.6rem;font-weight:700}
+details[open] summary::before{content:"–"}
+details p{padding:0 1.2rem 1.1rem;color:var(--muted);font-size:.9rem}
 
-/* deliverables */
-.deliv{background:var(--bg2)}
-.deliv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
-.doc{position:relative;background:linear-gradient(165deg,#13223d,#0d1830);border:1px solid rgba(148,163,184,.25);border-radius:16px;overflow:hidden;transition:.3s}
-.doc:hover{transform:translateY(-5px);border-color:rgba(34,211,238,.5);box-shadow:0 20px 50px rgba(0,0,0,.45)}
-.doc .bar{display:flex;gap:7px;padding:14px 16px;border-bottom:1px solid var(--line);align-items:center;background:rgba(8,16,32,.5)}
-.doc .bar i{width:10px;height:10px;border-radius:50%;background:#2a3f60}
-.doc .bar i:first-child{background:rgba(34,211,238,.6)}
-.doc .bar span{margin-left:auto;font-size:11px;color:var(--muted);letter-spacing:.1em}
-.doc .body{padding:22px;min-height:210px}
-.doc h4{font-size:15px;margin-bottom:14px;color:var(--ink);font-family:"Space Grotesk"}
-.tag-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-.tag{font-size:10.5px;letter-spacing:.08em;padding:5px 11px;border-radius:20px;border:1px solid rgba(34,211,238,.35);color:var(--accent);background:rgba(34,211,238,.06)}
-.ph{position:relative;height:120px;border-radius:10px;background:linear-gradient(140deg,#1b3358,#10203a);border:1px solid rgba(148,163,184,.3);overflow:hidden;display:flex;align-items:flex-end;padding:10px}
-.ph::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(148,163,184,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(148,163,184,.08) 1px,transparent 1px);background-size:22px 22px}
-.ph .geo{position:relative;font-size:10.5px;color:var(--green);background:rgba(5,10,20,.8);border:1px solid rgba(52,211,153,.4);border-radius:6px;padding:4px 9px;letter-spacing:.05em}
-.ph .crosshair{position:absolute;top:38%;left:58%;width:26px;height:26px;border:1.5px solid var(--red);border-radius:50%;opacity:.9;box-shadow:0 0 14px rgba(244,63,94,.5)}
-.ph .crosshair::after{content:"";position:absolute;inset:9px;background:var(--red);border-radius:50%}
-table.mock{width:100%;border-collapse:collapse;font-size:11.5px;color:var(--muted)}
-table.mock th{color:var(--accent);text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);font-weight:600;letter-spacing:.06em;font-size:10.5px;text-transform:uppercase}
-table.mock td{padding:6px 8px;border-bottom:1px dashed rgba(148,163,184,.12)}
-.doc-line{height:9px;border-radius:5px;background:#22385e;margin:11px 0}
-.doc-line.w60{width:60%}.doc-line.w80{width:80%}.doc-line.w45{width:45%}
-.stamp{position:absolute;right:18px;bottom:16px;border:1.5px solid var(--green);color:var(--green);font-size:10px;letter-spacing:.18em;padding:6px 12px;border-radius:6px;transform:rotate(-6deg);text-transform:uppercase;background:rgba(5,10,20,.6)}
+form{margin-top:2rem;display:grid;gap:.85rem;max-width:42rem}
+input,textarea{width:100%;background:var(--bg2);border:1px solid var(--line);color:var(--ink);border-radius:.65rem;padding:.75rem 1rem;font-size:.95rem;font-family:inherit}
+input:focus,textarea:focus{outline:1px solid var(--accent)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+@media(max-width:640px){.row{grid-template-columns:1fr}}
 
-/* process */
-.proc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:26px;position:relative}
-.step{border-top:2px solid var(--line);padding-top:28px;position:relative;transition:.3s}
-.step::before{content:"";position:absolute;top:-2px;left:0;width:46px;height:2px;background:var(--accent);box-shadow:0 0 14px var(--accent)}
-.step .n{font-size:12.5px;color:var(--accent);letter-spacing:.2em;margin-bottom:14px;font-family:"Space Grotesk";font-weight:600}
-.step h3{font-size:18px;margin-bottom:9px;font-weight:600}
-.step p{font-size:14px;color:var(--muted)}
-
-/* pipeline */
-.pipe{background:var(--bg2)}
-.pipe-svg{width:100%;height:auto}
-.flow{stroke-dasharray:6 8;animation:flow 1.4s linear infinite}
-@keyframes flow{to{stroke-dashoffset:-14}}
-
-/* about */
-.split{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center}
-@media(max-width:920px){.split{grid-template-columns:1fr}}
-.split p{color:var(--muted);margin-bottom:18px;font-size:16px}
-.badge-card{background:linear-gradient(160deg,#14233f,#0b1730);border:1px solid rgba(34,211,238,.4);border-radius:20px;padding:40px;position:relative;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.4)}
-.badge-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent)}
-.badge-card .row{display:flex;gap:18px;align-items:center;margin-bottom:22px}
-.badge-card .mark{width:58px;height:58px;border-radius:15px;background:linear-gradient(135deg,#0e2a3a,#070d18);border:1px solid rgba(34,211,238,.45);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent);font-size:15px;font-family:"Space Grotesk"}
-.badge-card b{font-size:17px;display:block}
-.badge-card span{font-size:13px;color:var(--muted)}
-.badge-card p{font-size:14.5px;margin:0}
-
-/* contact */
-.contact{background:linear-gradient(180deg,var(--bg2),var(--bg));text-align:center}
-.contact h2{margin-bottom:18px}
-.contact .lead{margin:0 auto 50px;text-align:center}
-.contact-cards{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
-.contact-cards a{display:flex;align-items:center;gap:15px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:24px 32px;text-decoration:none;font-size:16px;font-weight:600;transition:.25s}
-.contact-cards a:hover{border-color:var(--accent);transform:translateY(-3px)}
-.contact-cards svg{width:24px;height:24px;stroke:var(--accent);fill:none;stroke-width:1.8}
-.contact-cards a.primary{background:var(--accent);border-color:var(--accent);color:#06222b;padding:28px 40px;font-size:20px;box-shadow:0 14px 44px rgba(34,211,238,.22);font-family:"Space Grotesk"}
-.contact-cards a.primary svg{stroke:#06222b}
-.contact-cards a.primary span{display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left}
-.contact-cards a.primary small{font-weight:500;font-size:13px;color:#0a3442;letter-spacing:0}
-.contact-cards a.primary:hover{transform:translateY(-3px);box-shadow:0 20px 60px rgba(34,211,238,.35)}
-.phone-line{margin-top:28px;color:var(--muted);font-size:14px;display:flex;gap:10px;justify-content:center;align-items:baseline;flex-wrap:wrap}
-.phone-line a{color:var(--ink);text-decoration:none;font-weight:600}
-.phone-line a:hover{color:var(--accent)}
-.contact small.addr{display:block;margin-top:36px;color:var(--muted);font-size:13px;letter-spacing:.1em}
-
-/* footer */
-footer{padding:56px 0 40px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);background:var(--bg2)}
-.foot-grid{display:flex;justify-content:space-between;gap:36px;flex-wrap:wrap;margin-bottom:36px}
-.foot-grid .grp b{display:block;color:var(--ink);font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:16px;font-family:"Space Grotesk"}
-.foot-grid .grp a{display:block;color:var(--muted);text-decoration:none;padding:4px 0;font-size:13.5px;transition:.2s}
-.foot-grid .grp a:hover{color:var(--accent)}
-.foot-base{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:28px}
-footer a.accent{color:var(--accent);text-decoration:none}
-
-@media(max-width:760px){
-  .wrap{padding:0 22px}
-  .nav-links{display:none}
-  .burger{display:block;background:none;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:9px 14px;font-size:16px;cursor:pointer}
-  .mobile-menu{display:none;position:fixed;top:74px;left:0;right:0;background:var(--bg2);border-bottom:1px solid var(--line);padding:26px 32px;flex-direction:column;gap:18px;z-index:59}
-  .mobile-menu.open{display:flex}
-  .mobile-menu a{color:var(--ink);text-decoration:none;font-size:15px;letter-spacing:.1em;text-transform:uppercase}
-  section{padding:78px 0}
-  .hero-stats{gap:34px}
-}
+footer{border-top:1px solid var(--line);padding:2.2rem 0;text-align:center;color:var(--muted);font-size:.85rem}
+footer a{color:var(--accent);text-decoration:none}
 </style>
 </head>
 <body>
 
 <header>
   <div class="wrap nav">
-    <a class="logo" href="#top">
-      <span class="logo-mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2"><path d="M6 4v16M18 4v16M6 12h12"/></svg></span>
-      <span><b>HESTIA DATA</b><small data-i18n="tag">An AI Work School Venture</small></span>
-    </a>
+    <a class="logo" href="#top"><span class="logo-mark">H</span>HESTIA Data</a>
     <nav class="nav-links">
-      <a href="#services" data-i18n="n1">Services</a>
-      <a href="#deliverables" data-i18n="n2">Deliverables</a>
-      <a href="#process" data-i18n="n3">Process</a>
-      <a href="#packages" data-i18n="n6">Prices</a>
-      <a href="#about" data-i18n="n4">Why Us</a>
-      <a href="#contact" data-i18n="n5">Contact</a>
-      <div class="lang">
-        <button id="btn-en" class="on" onclick="setLang('en')">EN</button>
-        <button id="btn-tr" onclick="setLang('tr')">TR</button>
-      </div>
+      <a href="#ai-data">AI Training Data</a>
+      <a href="#field">Field Services</a>
+      <a href="#process">Process</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn" href="#contact">Send a brief</a>
     </nav>
-    <button class="burger" onclick="document.getElementById('mmenu').classList.toggle('open')">☰</button>
   </div>
 </header>
-<div class="mobile-menu" id="mmenu">
-  <a href="#services" data-i18n="n1">Services</a>
-  <a href="#deliverables" data-i18n="n2">Deliverables</a>
-  <a href="#process" data-i18n="n3">Process</a>
-  <a href="#packages" data-i18n="n6">Prices</a>
-  <a href="#about" data-i18n="n4">Why Us</a>
-  <a href="#contact" data-i18n="n5">Contact</a>
-</div>
 
-<!-- ============ HERO ============ -->
-<div class="hero" id="top">
-  <div class="hero-grid-bg"></div>
-  <div class="wrap hero-inner">
-    <div>
-      <div class="kicker" data-i18n="kicker">Hestia Data · Ankara, Türkiye</div>
-      <h1 data-i18n-html="h1">Real-world data from Türkiye.<br><span class="accent">Collected, verified, delivered.</span></h1>
-      <p class="sub" data-i18n="hero">Türkiye's on-demand field desk. Registry documents, supplier visits and English reports for international teams. We confirm location access, scope, price and delivery date before you order.</p>
-      <div class="cta">
-        <a class="primary" href="mailto:info@hestiadata.net" data-i18n="cta1">Request a Quote</a>
-        <a class="ghost" href="#services" data-i18n="cta2">What We Collect</a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat"><b><i>4</i></b><span data-i18n="s1">Fixed-price packages</span></div>
-        <div class="stat"><b data-i18n="stat2">Written</b><span data-i18n="s2">Scope and price before order</span></div>
-        <div class="stat"><b data-i18n="stat3">Agreed</b><span data-i18n="s3">Delivery date in your quote</span></div>
-      </div>
+<div class="hero wrap" id="top">
+  <span class="pill">Ankara-based · Working with international teams</span>
+  <h1>Real-world data from Türkiye.<br><span>Collected, verified, delivered.</span></h1>
+  <p class="lead">HESTIA Data is your team on the ground in Türkiye. We build consented egocentric video datasets for robot foundation models, and we run field capture, document retrieval and supplier verification for research, audit and AI teams abroad.</p>
+  <div class="cta">
+    <a class="btn" href="#ai-data">Robot training data</a>
+    <a class="btn ghost" href="#field">Field services</a>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>1080p+</b><small>Capture standard</small></div>
+    <div class="stat"><b>48h</b><small>Pilot / quote turnaround</small></div>
+    <div class="stat"><b>7 cities</b><small>Ankara HQ + field coverage</small></div>
+    <div class="stat"><b>USD / EUR</b><small>Invoicing, NDA on request</small></div>
+  </div>
+
+  <div class="split">
+    <div class="offer">
+      <span class="tag cy">For AI / robotics teams</span>
+      <h3>Egocentric household video</h3>
+      <p>Consented first-person recordings of real home chores across Türkiye — QA-gated, metadata-rich, delivered in the formats your model already ingests.</p>
+      <ul>
+        <li>Hands-in-frame discipline; accepted-hours pricing</li>
+        <li>RLDS · HDF5 · LeRobot · MP4+JSON</li>
+        <li>KVKK-aligned consent workflow</li>
+      </ul>
+      <p style="margin-top:1.2rem"><a class="btn" href="#ai-data">See the task catalog</a></p>
     </div>
-    <div class="radar rv">
-      <div class="radar-head"><span data-i18n="radar">Locations · Türkiye</span><span data-i18n="radarstatus">BY AGREEMENT</span></div>
-      <svg viewBox="0 0 600 380">
-        <defs>
-          <radialGradient id="rg" cx="50%" cy="50%"><stop offset="0%" stop-color="#22d3ee" stop-opacity=".12"/><stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/></radialGradient>
-          <linearGradient id="sw" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#22d3ee" stop-opacity=".35"/><stop offset="100%" stop-color="#22d3ee" stop-opacity="0"/></linearGradient>
-        </defs>
-        <rect x="0" y="0" width="600" height="380" fill="url(#rg)" rx="12"/>
-        <g stroke="rgba(163,190,220,.4)" fill="none">
-          <circle cx="300" cy="190" r="60"/><circle cx="300" cy="190" r="110"/><circle cx="300" cy="190" r="160"/>
-          <line x1="300" y1="20" x2="300" y2="360"/><line x1="130" y1="190" x2="470" y2="190"/>
-        </g>
-        <path class="sweep" d="M300 190 L300 30 A160 160 0 0 1 380 45 Z" fill="url(#sw)"/>
-        <g font-family="Space Grotesk" font-size="11" fill="#a3b6cf" letter-spacing="1">
-          <g><circle cx="185" cy="120" r="4" fill="#22d3ee"/><circle class="ping" cx="185" cy="120" r="6" fill="none" stroke="#22d3ee"/><text x="197" y="124">İSTANBUL</text></g>
-          <g><circle cx="300" cy="190" r="5" fill="#34d399"/><circle class="ping" cx="300" cy="190" r="7" fill="none" stroke="#34d399"/><text x="312" y="194" fill="#34d399">ANKARA · HQ</text></g>
-          <g><circle cx="150" cy="215" r="4" fill="#22d3ee"/><circle class="ping" cx="150" cy="215" r="6" fill="none" stroke="#22d3ee"/><text x="162" y="219">İZMİR</text></g>
-          <g><circle cx="320" cy="300" r="4" fill="#22d3ee"/><circle class="ping" cx="320" cy="300" r="6" fill="none" stroke="#22d3ee"/><text x="332" y="304">ANTALYA</text></g>
-          <g><circle cx="380" cy="255" r="4" fill="#22d3ee"/><circle class="ping" cx="380" cy="255" r="6" fill="none" stroke="#22d3ee"/><text x="392" y="259">ADANA</text></g>
-          <g><circle cx="330" cy="80" r="4" fill="#22d3ee"/><circle class="ping" cx="330" cy="80" r="6" fill="none" stroke="#22d3ee"/><text x="342" y="84">RİZE</text></g>
-          <g><circle cx="440" cy="210" r="4" fill="#22d3ee"/><circle class="ping" cx="440" cy="210" r="6" fill="none" stroke="#22d3ee"/><text x="452" y="214">DİYARBAKIR</text></g>
-        </g>
-      </svg>
-      <div class="radar-foot"><span data-i18n="radar2">Field visits · Ankara HQ</span><span data-i18n="radar3">Availability confirmed per location</span></div>
+    <div class="offer">
+      <span class="tag am">For research / audit / ops teams</span>
+      <h3>Field desk &amp; verification</h3>
+      <p>You can't collect this data from abroad — we're already here. Visits, records and market evidence, summarized in English.</p>
+      <ul>
+        <li>Supplier verification &amp; company document packs</li>
+        <li>Field photo/video with geotag &amp; timestamp</li>
+        <li>Local market intelligence, not scraped data</li>
+      </ul>
+      <p style="margin-top:1.2rem"><a class="btn am" href="#field">See field services</a></p>
     </div>
   </div>
 </div>
 
-<!-- ============ MARQUEE ============ -->
-<div class="marquee">
-  <div class="marquee-track">
-    <span><b>◆</b><i data-i18n="mq1">Field Photography</i><b>◆</b><i data-i18n="mq2">Document Retrieval</i><b>◆</b><i data-i18n="mq3">Market Intelligence</i><b>◆</b><i data-i18n="mq4">AI Training Data</i><b>◆</b><i data-i18n="mq5">Retail Audits</i><b>◆</b><i data-i18n="mq6">English Summaries</i><b>◆</b><i data-i18n="mq7">Geotagged Delivery</i><b>◆</b></span>
-    <span><b>◆</b><i data-i18n="mq1">Field Photography</i><b>◆</b><i data-i18n="mq2">Document Retrieval</i><b>◆</b><i data-i18n="mq3">Market Intelligence</i><b>◆</b><i data-i18n="mq4">AI Training Data</i><b>◆</b><i data-i18n="mq5">Retail Audits</i><b>◆</b><i data-i18n="mq6">English Summaries</i><b>◆</b><i data-i18n="mq7">Geotagged Delivery</i><b>◆</b></span>
-  </div>
-</div>
-
-<!-- ============ SERVICES ============ -->
-<section id="services">
+<section id="ai-data">
   <div class="wrap">
-    <div class="sec-head rv">
-      <div>
-        <div class="no" data-i18n="c0">01 · Services</div>
-        <h2 data-i18n="ch">What we collect</h2>
-      </div>
-      <p class="lead" data-i18n="cl">Four service lines for companies that need trustworthy material from Türkiye — without sending their own team.</p>
+    <h2>AI training data — egocentric household video</h2>
+    <p class="sub">Everyday chores performed naturally in real homes — not staged repetitions. Built for robot foundation models and human-video pretraining mixes. Custom scripts, object sets, and failure/recovery coverage on request.</p>
+    <div class="grid g4">
+      <div class="task">Food prep &amp; cooking</div>
+      <div class="task">Dishwashing &amp; kitchen reset</div>
+      <div class="task">Laundry &amp; garment folding</div>
+      <div class="task">Surface cleaning &amp; mopping</div>
+      <div class="task">Table &amp; shelf organizing</div>
+      <div class="task">Tea / coffee preparation</div>
+      <div class="task">Object placement &amp; retrieval</div>
+      <div class="task">Custom task scripts</div>
     </div>
-    <div class="svc-grid">
-      <div class="svc rv">
-        <div class="idx">01</div>
-        <div class="icon"><svg viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.2"/></svg></div>
-        <h3 data-i18n="c1h">Field Photo & Video Capture</h3>
-        <p data-i18n="c1p">Location and timestamp requirements are agreed for each visit, subject to access and permission.</p>
-        <ul>
-          <li data-i18n="c1a">Store checks, shelf photos & retail audits</li>
-          <li data-i18n="c1b">Site, property & asset photography</li>
-          <li data-i18n="c1c">Street-level & POI video capture</li>
-        </ul>
-      </div>
-      <div class="svc rv">
-        <div class="idx">02</div>
-        <div class="icon"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h6M9 16h6M9 8h2"/></svg></div>
-        <h3 data-i18n="c2h">Document & Record Retrieval</h3>
-        <p data-i18n="c2p">We obtain the paperwork you cannot reach from abroad — and summarize it in English.</p>
-        <ul>
-          <li data-i18n="c2a">Registry, municipality & public records</li>
-          <li data-i18n="c2b">Certificates, permits & official documents</li>
-          <li data-i18n="c2c">Turkish → English summaries</li>
-        </ul>
-      </div>
-      <div class="svc rv">
-        <div class="idx">03</div>
-        <div class="icon"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg></div>
-        <h3 data-i18n="c3h">Local Market Intelligence</h3>
-        <p data-i18n="c3p">Numbers collected on the ground — not scraped from the web.</p>
-        <ul>
-          <li data-i18n="c3a">Price & assortment surveys</li>
-          <li data-i18n="c3b">Competitor & location mapping</li>
-          <li data-i18n="c3c">Turkish-language interviews & surveys</li>
-        </ul>
-      </div>
-      <div class="svc rv">
-        <div class="idx">04</div>
-        <div class="icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h6v6H9zM4 12h-2M22 12h-2M12 4V2M12 22v-2"/></svg></div>
-        <h3 data-i18n="c4h">AI Training Data</h3>
-        <p data-i18n="c4p">Custom Turkish datasets for models that need real-world coverage.</p>
-        <ul>
-          <li data-i18n="c4a">Image & video dataset collection</li>
-          <li data-i18n="c4b">Turkish speech & text data</li>
-          <li data-i18n="c4c">Annotation & quality assurance</li>
-        </ul>
-      </div>
+    <div class="grid g3" style="margin-top:1.2rem">
+      <div class="card"><div class="ico">✋</div><h3>QA-gated episodes</h3><p>Automated checks (hand coverage, motion naturalness, lighting) plus human review. You pay for accepted hours only.</p></div>
+      <div class="card"><div class="ico">🛡️</div><h3>Compliance-ready provenance</h3><p>Written consent, third-party masking workflow, documented retention &amp; deletion policy. KVKK-aligned today, GDPR roadmap as regulations converge.</p></div>
+      <div class="card"><div class="ico">⚙️</div><h3>Robot-ready delivery</h3><p>Task-level metadata, sub-action segmentation on request, per-joint hand pose via partner pipeline. Ships in RLDS, HDF5, LeRobot or your schema.</p></div>
+      <div class="card"><div class="ico">🏠</div><h3>Real homes, not studios</h3><p>Recorded in lived-in apartments and houses — the environmental diversity manipulation policies need to generalize.</p></div>
+      <div class="card"><div class="ico">🌍</div><h3>Bridge geography</h3><p>European-timezone collaboration, EU-adjacent legal framework, household culture spanning Anatolian and modern urban contexts.</p></div>
+      <div class="card"><div class="ico">📷</div><h3>Hardware-flexible</h3><p>Head-mounted smartphone capture at scale, or multi-sensor rigs (RGB-D, IMU, wrist cameras) for premium programs.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ============ DELIVERABLES ============ -->
-<section id="deliverables" class="deliv">
+<section id="field">
   <div class="wrap">
-    <div class="sec-head rv">
-      <div>
-        <div class="no" data-i18n="d0">02 · Deliverables</div>
-        <h2 data-i18n="dh">Delivery formats</h2>
-      </div>
-      <p class="lead" data-i18n="dl">Illustrative formats only. The values shown are sample data, not a completed client assignment. Your quote specifies the files and checks included.</p>
+    <h2>Field services — Türkiye desk</h2>
+    <p class="sub">Procurement-grade evidence from the field: we confirm what exists, collect what you can't reach, and deliver it in English with a full collection log.</p>
+    <div class="grid g2">
+      <div class="card"><div class="ico">📍</div><h3>Field photo &amp; video capture</h3><p>Location and timestamp requirements are agreed for each visit, subject to access and permission.</p></div>
+      <div class="card"><div class="ico">📄</div><h3>Document &amp; record retrieval</h3><p>We obtain the paperwork you cannot reach from abroad — and summarize it in English.</p></div>
+      <div class="card"><div class="ico">📊</div><h3>Local market intelligence</h3><p>Numbers collected on the ground — not scraped from the web.</p></div>
+      <div class="card"><div class="ico">🏭</div><h3>Supplier verification</h3><p>On-site visits confirming a business exists and operates at its stated address; company document packs; shelf proof from outlets you choose.</p></div>
     </div>
-    <div class="deliv-grid">
-      <div class="doc rv">
-        <div class="bar"><i></i><i></i><i></i><span>FIELD_PACK_01.ZIP</span></div>
-        <div class="body">
-          <h4 data-i18n="d1h">Photo set format</h4>
-          <div class="ph"><span class="crosshair"></span><span class="geo">39.9208°N 32.8541°E · 2026-10-15 14:32</span></div>
-          <div class="tag-row"><span class="tag">GEOTAG</span><span class="tag">EXIF INTACT</span><span class="tag">4K</span></div>
-        </div>
-      </div>
-      <div class="doc rv">
-        <div class="bar"><i></i><i></i><i></i><span>DOCUMENTS_EN.PDF</span></div>
-        <div class="body" style="position:relative">
-          <h4 data-i18n="d2h">Documents + English Summary</h4>
-          <div class="doc-line w80"></div><div class="doc-line"></div><div class="doc-line w60"></div><div class="doc-line w80"></div><div class="doc-line w45"></div>
-          <span class="stamp" data-i18n="d2s">Sample</span>
-        </div>
-      </div>
-      <div class="doc rv">
-        <div class="bar"><i></i><i></i><i></i><span>DATASET_QA.CSV</span></div>
-        <div class="body">
-          <h4 data-i18n="d3h">Structured Data + QA Log</h4>
-          <table class="mock">
-            <tr><th>field</th><th>value</th><th>qa</th></tr>
-            <tr><td>price_try</td><td>412.50</td><td style="color:#34d399">✓</td></tr>
-            <tr><td>district</td><td>Çankaya</td><td style="color:#34d399">✓</td></tr>
-            <tr><td>sku_count</td><td>1,204</td><td style="color:#34d399">✓</td></tr>
-            <tr><td>photo_ref</td><td>IMG_0442</td><td style="color:#34d399">✓</td></tr>
-          </table>
-          <div class="tag-row"><span class="tag">CSV / JSON</span><span class="tag">QA LOG</span></div>
-        </div>
-      </div>
+    <div class="cities">
+      <span class="city">İstanbul</span><span class="city">Ankara · HQ</span><span class="city">İzmir</span><span class="city">Antalya</span><span class="city">Adana</span><span class="city">Rize</span><span class="city">Diyarbakır</span>
     </div>
+    <p class="sub" style="margin-top:1rem;font-size:.85rem">Field visits · availability confirmed per location, specified in your written quote.</p>
   </div>
 </section>
 
-<!-- ============ PROCESS ============ -->
 <section id="process">
   <div class="wrap">
-    <div class="sec-head rv">
-      <div>
-        <div class="no" data-i18n="a0">03 · Process</div>
-        <h2 data-i18n="ah">How it works</h2>
-      </div>
-      <p class="lead" data-i18n="al">A simple, transparent pipeline — you get a fixed quote before we lift a camera.</p>
-    </div>
-    <div class="proc-grid">
-      <div class="step rv"><div class="n" data-i18n="a1n">STEP 01</div><h3 data-i18n="a1h">Brief</h3><p data-i18n="a1p">Send us what you need: locations, subjects, formats. One email is enough.</p></div>
-      <div class="step rv"><div class="n" data-i18n="a2n">STEP 02</div><h3 data-i18n="a2h">Written quote</h3><p data-i18n="a2p">Fixed price, clear timeline and a sample of the deliverable format.</p></div>
-      <div class="step rv"><div class="n" data-i18n="a3n">STEP 03</div><h3 data-i18n="a3h">Fieldwork</h3><p data-i18n="a3p">Collection starts after the location, access permissions and collection scope have been agreed.</p></div>
-      <div class="step rv"><div class="n" data-i18n="a4n">STEP 04</div><h3 data-i18n="a4h">Verified Delivery</h3><p data-i18n="a4p">Quality-checked files delivered securely, with a full collection log.</p></div>
+    <h2>How engagement works</h2>
+    <p class="sub">A simple, transparent pipeline — you get a fixed quote before we lift a camera.</p>
+    <div class="grid g4 steps">
+      <div class="step"><div class="n">01 · BRIEF</div><h3>Scope</h3><p>Send locations, subjects, task list, formats. One email is enough — we reply within 48 hours.</p></div>
+      <div class="step"><div class="n">02 · QUOTE</div><h3>Written quote</h3><p>Fixed price, clear timeline and a sample of the deliverable format. Review steps and evidence spelled out.</p></div>
+      <div class="step"><div class="n">03 · FIELDWORK</div><h3>Collection</h3><p>Starts after location, access permissions and scope are agreed. Field team → AI checks → human QA.</p></div>
+      <div class="step"><div class="n">04 · DELIVERY</div><h3>Verified delivery</h3><p>Quality-checked files delivered securely (encrypted link) with a full collection log.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ============ PIPELINE ============ -->
-<section class="pipe" id="quality">
+<section id="faq">
   <div class="wrap">
-    <div class="sec-head rv">
-      <div>
-        <div class="no" data-i18n="p0">04 · Quality</div>
-        <h2 data-i18n="ph">Review steps in your quote</h2>
-      </div>
-      <p class="lead" data-i18n="pl">The quote states the review steps, evidence to be collected and any access or data limitations.</p>
-    </div>
-    <svg class="pipe-svg rv" viewBox="0 0 1180 190">
-      <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#22d3ee"/></marker></defs>
-      <g font-family="Space Grotesk" font-size="15" fill="#f0f5fc">
-        <g><rect x="20" y="55" width="230" height="80" rx="14" fill="#13223d" stroke="rgba(34,211,238,.5)"/><text x="135" y="90" text-anchor="middle">COLLECT</text><text x="135" y="112" text-anchor="middle" font-size="11" fill="#a3b6cf" data-i18n="p1">field team · geotag · timestamp</text></g>
-        <line class="flow" x1="255" y1="95" x2="305" y2="95" stroke="#22d3ee" stroke-width="2" marker-end="url(#arr)"/>
-        <g><rect x="315" y="55" width="230" height="80" rx="14" fill="#13223d" stroke="rgba(34,211,238,.5)"/><text x="430" y="90" text-anchor="middle">AI CHECK</text><text x="430" y="112" text-anchor="middle" font-size="11" fill="#a3b6cf" data-i18n="p2">blur · duplicate · GPS sanity</text></g>
-        <line class="flow" x1="550" y1="95" x2="600" y2="95" stroke="#22d3ee" stroke-width="2" marker-end="url(#arr)"/>
-        <g><rect x="610" y="55" width="230" height="80" rx="14" fill="#13223d" stroke="rgba(34,211,238,.5)"/><text x="725" y="90" text-anchor="middle">HUMAN QA</text><text x="725" y="112" text-anchor="middle" font-size="11" fill="#a3b6cf" data-i18n="p3">analyst review · sampling</text></g>
-        <line class="flow" x1="845" y1="95" x2="895" y2="95" stroke="#22d3ee" stroke-width="2" marker-end="url(#arr)"/>
-        <g><rect x="905" y="55" width="255" height="80" rx="14" fill="#12394a" stroke="#22d3ee"/><text x="1032" y="90" text-anchor="middle" fill="#22d3ee">SECURE DELIVERY</text><text x="1032" y="112" text-anchor="middle" font-size="11" fill="#a3b6cf" data-i18n="p4">encrypted link · full log</text></g>
-      </g>
-    </svg>
+    <h2>What teams ask before the first order</h2>
+    <details><summary>How do we pay?</summary><p>Invoices in USD or EUR, paid by bank transfer. Vendor forms and tax forms completed on request.</p></details>
+    <details><summary>Can we start under NDA?</summary><p>Mutual NDA on request before you share a brief or a supplier name.</p></details>
+    <details><summary>How do you handle personal data?</summary><p>Faces and licence plates are blurred by default. No personal data is collected unless your brief needs it with documented consent (KVKK / GDPR).</p></details>
+    <details><summary>What will you not do?</summary><p>We retrieve public records, verify addresses and capture field evidence. We do not serve court papers or give legal opinions.</p></details>
+    <details><summary>Who is behind HESTIA Data?</summary><p>An Ankara-based field data operation — a data venture backed by SEGE Group and operating as the field-data collection arm of the AI Work School group.</p></details>
   </div>
 </section>
 
-<!-- ============ STARTER PACKAGES ============ -->
-<section id="packages">
+<section id="contact">
   <div class="wrap">
-    <div class="sec-head rv">
-      <div>
-        <div class="no" data-i18n="g0">05 · Prices</div>
-        <h2 data-i18n="gh">Starter packages</h2>
-      </div>
-      <p class="lead" data-i18n="gl">Fixed prices for the most common requests. Order with one email.</p>
-    </div>
-    <div class="svc-grid">
-      <div class="svc pkg feat rv">
-        <div class="idx">P</div>
-        <span class="tagline" data-i18n="g4t">Most complete</span>
-        <h3 data-i18n="g4h">Supplier Proof Pack</h3>
-        <div class="price">229 USD</div>
-        <p data-i18n="g4p">Documents and an on-site visit for one Turkish supplier, in one order.</p>
-        <ul>
-          <li data-i18n="g4a">Trade registry gazette records + English summary</li>
-          <li data-i18n="g4b">On-site visit with geotagged, timestamped photos</li>
-          <li data-i18n="g4c">One-page risk summary</li>
-        </ul>
-        <a class="sample" href="sample-supplier-proof-pack.pdf" target="_blank" rel="noopener" data-i18n="g4s">See a sample report (PDF)</a>
-        <a class="order" href="mailto:info@hestiadata.net?subject=Supplier%20Proof%20Pack" data-i18n="gorder">Order by email</a>
-      </div>
-      <div class="svc pkg rv">
-        <div class="idx">A</div>
-        <h3 data-i18n="g1h">Supplier verification visit</h3>
-        <div class="price">149 USD</div>
-        <p data-i18n="g1p">One on-site visit to confirm the business exists and operates at its stated address.</p>
-        <ul>
-          <li data-i18n="g1a">Photos and video of the site</li>
-          <li data-i18n="g1b">Address and signage check</li>
-          <li data-i18n="g1c">Short English report (not a full factory audit)</li>
-        </ul>
-        <a class="order" href="mailto:info@hestiadata.net?subject=Supplier%20verification%20visit" data-i18n="gorder">Order by email</a>
-      </div>
-      <div class="svc pkg rv">
-        <div class="idx">B</div>
-        <h3 data-i18n="g2h">Company document pack</h3>
-        <div class="price">119 USD</div>
-        <p data-i18n="g2p">For one company registered in Türkiye.</p>
-        <ul>
-          <li data-i18n="g2a">Public registry documents</li>
-          <li data-i18n="g2b">English summary</li>
-        </ul>
-        <a class="order" href="mailto:info@hestiadata.net?subject=Company%20document%20pack" data-i18n="gorder">Order by email</a>
-      </div>
-      <div class="svc pkg rv">
-        <div class="idx">C</div>
-        <h3 data-i18n="g3h">Shelf proof</h3>
-        <div class="price">15 USD<small data-i18n="g3u">per location</small></div>
-        <div class="min" data-i18n="g3m">Minimum 10 locations</div>
-        <p data-i18n="g3p">Photo proof from the outlets you choose: pharmacies, grocers, dealers, hardware stores.</p>
-        <ul>
-          <li data-i18n="g3a">Geotagged shelf photo per outlet</li>
-          <li data-i18n="g3b">Price, placement and out-of-stock notes</li>
-        </ul>
-        <a class="order" href="mailto:info@hestiadata.net?subject=Shelf%20proof" data-i18n="gorder">Order by email</a>
-      </div>
-    </div>
-    <div class="pkg-note rv">
-      <b data-i18n="gbig">Larger projects: scope, price and schedule confirmed in a written quote.</b>
-      <a href="mailto:info@hestiadata.net">info@hestiadata.net</a>
-    </div>
-  </div>
-</section>
-
-<!-- ============ ABOUT ============ -->
-<section id="about">
-  <div class="wrap split">
-    <div class="rv">
-      <div class="no" data-i18n="ab0">06 · Why Us</div>
-      <h2 style="margin-bottom:26px" data-i18n-html="abh">You can't collect this data from abroad.<br>We're already here.</h2>
-      <p data-i18n="ab1">Hestia Data is an Ankara-based field data collection service for international teams. When your research, audit or AI project needs real-world material from Türkiye, we are your team on the ground.</p>
-      <p data-i18n="ab2">As an AI Work School venture, we scope each assignment before accepting it. The quote identifies the collection requirements, review steps and delivery date.</p>
-    </div>
-    <div class="badge-card rv">
+    <h2>Tell us what you need from Türkiye</h2>
+    <p class="sub">Task list, locations, target volume, quality bar, delivery format. We reply within 48 hours with a pilot plan or a written quote.</p>
+    <p class="sub" style="margin-top:1rem">📧 <a href="mailto:cem@segegroup.com" style="color:var(--accent);text-decoration:none">cem@segegroup.com</a> · hello@hestiadata.net</p>
+    <form onsubmit="event.preventDefault();this.innerHTML='<p style=&quot;color:#34d399&quot;>Brief received. We reply within 48 hours.</p>';">
       <div class="row">
-        <div class="mark">AI<br>WS</div>
-        <div><b data-i18n="abb">An AI Work School Venture</b><span data-i18n="abs">hestiadata.net · aiworkschool.com</span></div>
+        <input required placeholder="Name">
+        <input required type="email" placeholder="Work email">
       </div>
-      <p data-i18n="abp">Hestia Data operates as the field-data collection arm of the AI Work School group, for research firms, AI companies and audit networks seeking material from Türkiye.</p>
-    </div>
+      <input placeholder="Company">
+      <textarea required rows="5" placeholder="What do you need from Türkiye — tasks, locations, volume, format…"></textarea>
+      <button class="btn" style="width:fit-content" type="submit">Send brief</button>
+    </form>
   </div>
 </section>
 
-<!-- ============ VENDOR ============ -->
-<section id="vendor">
-  <div class="wrap">
-    <div class="sec-head rv">
-      <div>
-        <div class="no" data-i18n="v0">For vendor managers</div>
-        <h2 data-i18n="vh">Easy to onboard as a supplier</h2>
-      </div>
-      <p class="lead" data-i18n="vl">What procurement teams usually ask us before the first order.</p>
-    </div>
-    <div class="vend rv">
-      <div><b data-i18n="v1h">Invoicing</b><p data-i18n="v1p">Invoices in USD or EUR, paid by bank transfer. Vendor forms and tax forms completed on request.</p></div>
-      <div><b data-i18n="v2h">Confidentiality</b><p data-i18n="v2p">Mutual NDA on request before you share a brief or a supplier name.</p></div>
-      <div><b data-i18n="v3h">Personal data</b><p data-i18n="v3p">Faces and licence plates are blurred by default. No personal data is collected unless your brief needs it with documented consent (KVKK / GDPR).</p></div>
-      <div><b data-i18n="v5h">Scope</b><p data-i18n="v5p">We retrieve public records, verify addresses and capture field evidence. We do not serve court papers or give legal opinions.</p></div>
-      <div><b data-i18n="v4h">Coverage</b><p data-i18n="v4p">Ankara-based coordination. Visits in each location depend on confirmed availability and access; the written quote specifies coverage and timing.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CONTACT ============ -->
-<section id="contact" class="contact">
-  <div class="wrap">
-    <div class="no" data-i18n="k0">07 · Contact</div>
-    <h2 data-i18n="kh">Tell us what you need from Türkiye.</h2>
-    <p class="lead" data-i18n="kl">Send your brief and location. We confirm availability, scope, price and timing before you order.</p>
-    <div class="contact-cards rv">
-      <a href="mailto:info@hestiadata.net" class="primary">
-        <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
-        <span>info@hestiadata.net<small data-i18n="kmail">Send the location and the evidence you need for a scoped quote.</small></span>
-      </a>
-    </div>
-    <div class="phone-line">
-      <span data-i18n="kphone2">Phone:</span>
-      <a href="tel:+903129634953">+90 312 963 49 53</a>
-    </div>
-    <small class="addr" data-i18n="kaddr">Ankara, Türkiye</small>
-  </div>
-</section>
-
-<!-- ============ FOOTER ============ -->
 <footer>
   <div class="wrap">
-    <div class="foot-grid">
-      <div class="grp" style="max-width:300px">
-        <b>HESTIA DATA</b>
-        <span data-i18n="fdesc">Field data collection from Türkiye for international research, audit and AI teams.</span>
-      </div>
-      <div class="grp">
-        <b data-i18n="fgroup">AI Work School Companies</b>
-        <a href="https://aiworkschool.com">AI Work School</a>
-        <a href="https://hestiadata.net">Hestia Data</a>
-        <a href="https://askthousand.com">AskThousand</a>
-        <a href="https://plancatch.com">PlanCatch</a>
-        <a href="https://simenergygame.com">SimEnergy</a>
-        <a href="https://benisil.net">BeniSil</a>
-      </div>
-      <div class="grp">
-        <b data-i18n="flegal">Legal</b>
-        <a href="/privacy.html" data-i18n="fpr">Privacy Policy</a>
-        <a href="/terms.html" data-i18n="fte">Terms of Service</a>
-      </div>
-      <div class="grp">
-        <b data-i18n="fcon">Contact</b>
-        <a href="mailto:info@hestiadata.net">info@hestiadata.net</a>
-        <a href="tel:+903129634953">+90 312 963 49 53</a>
-      </div>
-    </div>
-    <div class="foot-base">
-      <span data-i18n-html="f1">© 2026 Hestia Data — An <a class="accent" href="https://aiworkschool.com">AI Work School</a> venture. All rights reserved.</span>
-      <span>Ankara, Türkiye</span>
-    </div>
+    HESTIA Data · Ankara, Türkiye · A data venture backed by <a href="mailto:cem@segegroup.com">SEGE Group</a><br>
+    cem@segegroup.com · hello@hestiadata.net
   </div>
 </footer>
 
-<script>
-const T = {
-  en: {
-    tag:"An AI Work School Venture", n1:"Services", n2:"Deliverables", n3:"Process", n4:"Why Us", n5:"Contact",
-    kicker:"Hestia Data · Ankara, Türkiye",
-    h1:'Real-world data from Türkiye.<br><span class="accent">Collected, verified, delivered.</span>',
-    hero:"Türkiye's on-demand field desk. Registry documents, supplier visits and English reports for international teams. We confirm location access, scope, price and delivery date before you order.",
-    cta1:"Request a Quote", cta2:"What We Collect",
-    s1:"Fixed-price packages", stat2:"Written", s2:"Scope and price before order", stat3:"Agreed", s3:"Delivery date in your quote",
-    radar:"Locations · Türkiye", radarstatus:"BY AGREEMENT", radar2:"Field visits · Ankara HQ", radar3:"Availability confirmed per location",
-    mq1:"Field Photography", mq2:"Document Retrieval", mq3:"Market Intelligence", mq4:"AI Training Data", mq5:"Retail Audits", mq6:"English Summaries", mq7:"Geotagged Delivery",
-    c0:"01 · Services", ch:"What we collect", cl:"Four service lines for companies that need trustworthy material from Türkiye — without sending their own team.",
-    c1h:"Field Photo & Video Capture", c1p:"Location and timestamp requirements are agreed for each visit, subject to access and permission.", c1a:"Store checks, shelf photos & retail audits", c1b:"Site, property & asset photography", c1c:"Street-level & POI video capture",
-    c2h:"Document & Record Retrieval", c2p:"We obtain the paperwork you cannot reach from abroad — and summarize it in English.", c2a:"Registry, municipality & public records", c2b:"Certificates, permits & official documents", c2c:"Turkish → English summaries",
-    c3h:"Local Market Intelligence", c3p:"Numbers collected on the ground — not scraped from the web.", c3a:"Price & assortment surveys", c3b:"Competitor & location mapping", c3c:"Turkish-language interviews & surveys",
-    c4h:"AI Training Data", c4p:"Custom Turkish datasets for models that need real-world coverage.", c4a:"Image & video dataset collection", c4b:"Turkish speech & text data", c4c:"Annotation & quality assurance",
-    d0:"02 · Deliverables", dh:"Delivery formats", dl:"Illustrative formats only. The values shown are sample data, not a completed client assignment. Your quote specifies the files and checks included.",
-    d1h:"Photo set format", d2h:"Documents + English Summary", d2s:"Sample", d3h:"Structured Data + QA Log",
-    a0:"03 · Process", ah:"How it works", al:"A simple, transparent pipeline — you get a fixed quote before we lift a camera.",
-    a1n:"STEP 01", a1h:"Brief", a1p:"Send us what you need: locations, subjects, formats. One email is enough.",
-    a2n:"STEP 02", a2h:"Written quote", a2p:"Fixed price, clear timeline and a sample of the deliverable format.",
-    a3n:"STEP 03", a3h:"Fieldwork", a3p:"Collection starts after the location, access permissions and collection scope have been agreed.",
-    a4n:"STEP 04", a4h:"Verified Delivery", a4p:"Quality-checked files delivered securely, with a full collection log.",
-    p0:"04 · Quality", ph:"Review steps in your quote", pl:"The quote states the review steps, evidence to be collected and any access or data limitations.",
-    p1:"field team · geotag · timestamp", p2:"blur · duplicate · GPS sanity", p3:"analyst review · sampling", p4:"encrypted link · full log",
-    n6:"Prices",
-    g0:"05 · Prices", gh:"Starter packages", gl:"Fixed prices for the most common requests. Order with one email.",
-    g1h:"Supplier verification visit", g1p:"One on-site visit to confirm the business exists and operates at its stated address.", g1a:"Photos and video of the site", g1b:"Address and signage check", g1c:"Short English report (not a full factory audit)",
-    g2h:"Company document pack", g2p:"For one company registered in Türkiye.", g2a:"Public registry documents", g2b:"English summary",
-    g3h:"Shelf proof", g3u:"per location", g3m:"Minimum 10 locations", g3p:"Photo proof from the outlets you choose: pharmacies, grocers, dealers, hardware stores.", g3a:"Geotagged shelf photo per outlet", g3b:"Price, placement and out-of-stock notes",
-    g4t:"Most complete", g4s:"See a sample report (PDF)", g4h:"Supplier Proof Pack", g4p:"Documents and an on-site visit for one Turkish supplier, in one order.", g4a:"Trade registry gazette records + English summary", g4b:"On-site visit with geotagged, timestamped photos", g4c:"One-page risk summary",
-    v0:"For vendor managers", vh:"Easy to onboard as a supplier", vl:"What procurement teams usually ask us before the first order.", v1h:"Invoicing", v1p:"Invoices in USD or EUR, paid by bank transfer. Vendor forms and tax forms completed on request.", v2h:"Confidentiality", v2p:"Mutual NDA on request before you share a brief or a supplier name.", v3h:"Personal data", v3p:"Faces and licence plates are blurred by default. No personal data is collected unless your brief needs it with documented consent (KVKK / GDPR).", v5h:"Scope", v5p:"We retrieve public records, verify addresses and capture field evidence. We do not serve court papers or give legal opinions.", v4h:"Coverage", v4p:"Ankara-based coordination. Visits in each location depend on confirmed availability and access; the written quote specifies coverage and timing.",
-    gorder:"Order by email", gbig:"Larger projects: scope, price and schedule confirmed in a written quote.",
-    ab0:"06 · Why Us", abh:"You can't collect this data from abroad.<br>We're already here.",
-    ab1:"Hestia Data is an Ankara-based field data collection service for international teams. When your research, audit or AI project needs real-world material from Türkiye, we are your team on the ground.",
-    ab2:"As an AI Work School venture, we scope each assignment before accepting it. The quote identifies the collection requirements, review steps and delivery date.",
-    abb:"An AI Work School Venture", abs:"hestiadata.net · aiworkschool.com",
-    abp:"Hestia Data operates as the field-data collection arm of the AI Work School group, for research firms, AI companies and audit networks seeking material from Türkiye.",
-    k0:"07 · Contact", kh:"Tell us what you need from Türkiye.", kl:"Send your brief and location. We confirm availability, scope, price and timing before you order.", kmail:"Send the location and the evidence you need for a scoped quote.", kphone2:"Phone:", kaddr:"Ankara, Türkiye",
-    fdesc:"Field data collection from Türkiye for international research, audit and AI teams.", fgroup:"AI Work School Companies", flegal:"Legal", fpr:"Privacy Policy", fte:"Terms of Service", fcon:"Contact",
-    f1:'© 2026 Hestia Data — An <a class="accent" href="https://aiworkschool.com">AI Work School</a> venture. All rights reserved.'
-  },
-  tr: {
-    tag:"Bir AI Work School İştiraki", n1:"Hizmetler", n2:"Teslimatlar", n3:"Süreç", n4:"Neden Biz", n5:"İletişim",
-    kicker:"Hestia Data · Ankara, Türkiye",
-    h1:'Türkiye\'den gerçek saha verisi.<br><span class="accent">Toplanır, doğrulanır, teslim edilir.</span>',
-    hero:"Türkiye'nin talep üzerine saha masası. Uluslararası ekipler için sicil evrakı, tedarikçi ziyareti ve İngilizce rapor. Konum erişimi, kapsam, fiyat ve teslim tarihi siparişten önce yazılı teklifte netleştirilir.",
-    cta1:"Teklif İsteyin", cta2:"Neler Topluyoruz",
-    s1:"Sabit fiyatlı paket", stat2:"Yazılı", s2:"Sipariş öncesi kapsam ve fiyat", stat3:"Net", s3:"Teklifte belirtilen teslim tarihi",
-    radar:"Konumlar · Türkiye", radarstatus:"TEKLİFE BAĞLI", radar2:"Saha ziyareti · Ankara merkez", radar3:"Uygunluk konum bazında teyit edilir",
-    mq1:"Saha Fotoğrafçılığı", mq2:"Belge Temini", mq3:"Pazar İstihbaratı", mq4:"YZ Eğitim Verisi", mq5:"Perakende Denetimi", mq6:"İngilizce Özet", mq7:"Konum Etiketli Teslimat",
-    c0:"01 · Hizmetler", ch:"Neler topluyoruz", cl:"Türkiye'den güvenilir malzemeye ihtiyaç duyan firmalar için dört hizmet hattı — kendi ekibinizi göndermenize gerek kalmadan.",
-    c1h:"Saha Fotoğraf & Video Çekimi", c1p:"Konum ve zaman kaydı gereksinimleri, erişim ve izin durumuna göre her ziyaret için belirlenir.", c1a:"Mağaza kontrolleri, raf fotoğrafları & perakende denetimleri", c1b:"Şantiye, mülk & varlık fotoğraflama", c1c:"Sokak seviyesi & POI video çekimi",
-    c2h:"Belge & Kayıt Temini", c2p:"Yurt dışından ulaşamadığınız evrakı biz temin ediyoruz — ve İngilizce özetliyoruz.", c2a:"Sicil, belediye & kamu kayıtları", c2b:"Sertifika, izin & resmî belgeler", c2c:"Türkçe → İngilizce özet",
-    c3h:"Yerel Pazar İstihbaratı", c3p:"Web'den derlenen değil, sahada toplanan rakamlar.", c3a:"Fiyat & ürün çeşidi anketleri", c3b:"Rakip & lokasyon haritalama", c3c:"Türkçe görüşme & anket çalışmaları",
-    c4h:"Yapay Zekâ Eğitim Verisi", c4p:"Gerçek dünya kapsamasına ihtiyaç duyan modeller için özel Türkçe veri setleri.", c4a:"Görsel & video veri seti toplama", c4b:"Türkçe konuşma & metin verisi", c4c:"Etiketleme & kalite güvencesi",
-    d0:"02 · Teslimatlar", dh:"Teslim biçimleri", dl:"Yalnızca örnek teslim biçimleridir. Gösterilen değerler örnektir; tamamlanmış müşteri işi değildir. Dosyalar ve kontroller yazılı teklifte belirtilir.",
-    d1h:"Fotoğraf seti biçimi", d2h:"Belgeler + İngilizce Özet", d2s:"Örnek", d3h:"Yapılandırılmış Veri + QA Kaydı",
-    a0:"03 · Süreç", ah:"Nasıl çalışır", al:"Basit ve şeffaf bir süreç — kamerayı kaldırmadan önce sabit fiyat teklifi alırsınız.",
-    a1n:"ADIM 01", a1h:"Brif", a1p:"İhtiyacınızı gönderin: lokasyonlar, konular, formatlar. Tek bir e-posta yeterli.",
-    a2n:"ADIM 02", a2h:"Yazılı Teklif", a2p:"Sabit fiyat, net takvim ve teslim formatından bir örnek.",
-    a3n:"ADIM 03", a3h:"Saha Çalışması", a3p:"Konum, erişim izinleri ve toplama kapsamı netleştikten sonra saha çalışması başlar.",
-    a4n:"ADIM 04", a4h:"Doğrulanmış Teslimat", a4p:"Kalite kontrolünden geçmiş dosyalar, eksiksiz toplama kaydıyla güvenle teslim edilir.",
-    p0:"04 · Kalite", ph:"Teklifte belirtilen inceleme adımları", pl:"İnceleme adımları, toplanacak kanıtlar ve erişim ya da veri kısıtları yazılı teklifte belirtilir.",
-    p1:"saha ekibi · konum · zaman damgası", p2:"bulanıklık · mükerrer · GPS kontrolü", p3:"analist incelemesi · örnekleme", p4:"şifreli bağlantı · tam kayıt",
-    n6:"Fiyatlar",
-    g0:"05 · Fiyatlar", gh:"Başlangıç paketleri", gl:"En sık gelen talepler için sabit fiyatlar. Tek bir e-postayla sipariş verin.",
-    g1h:"Tedarikçi doğrulama ziyareti", g1p:"İşletmenin beyan ettiği adreste var olduğunu ve çalıştığını doğrulayan tek bir yerinde ziyaret.", g1a:"Tesisin fotoğraf ve videosu", g1b:"Adres ve tabela kontrolü", g1c:"Kısa İngilizce rapor (tam fabrika denetimi değildir)",
-    g2h:"Şirket belge paketi", g2p:"Türkiye'de kayıtlı tek bir şirket için.", g2a:"Kamuya açık sicil belgeleri", g2b:"İngilizce özet",
-    g3h:"Raf kanıtı", g3u:"lokasyon başına", g3m:"En az 10 lokasyon", g3p:"Seçtiğiniz satış noktalarından fotoğraflı kanıt: eczane, bakkal, bayi, yapı market.", g3a:"Her nokta için konum etiketli raf fotoğrafı", g3b:"Fiyat, raf yeri ve stok yokluğu notları",
-    g4t:"En kapsamlı", g4s:"Örnek raporu görün (PDF)", g4h:"Tedarikçi Kanıt Paketi", g4p:"Bir Türk tedarikçi için evrak ve yerinde ziyaret, tek siparişte.", g4a:"Ticaret sicili gazetesi kayıtları + İngilizce özet", g4b:"Konum ve zaman damgalı fotoğraflarla yerinde ziyaret", g4c:"Tek sayfalık risk özeti",
-    v0:"Tedarikçi yöneticileri için", vh:"Tedarikçi olarak kaydetmesi kolay", vl:"Satın alma ekiplerinin ilk siparişten önce genelde sorduğu konular.", v1h:"Faturalama", v1p:"USD veya EUR fatura, banka havalesiyle ödeme. Tedarikçi ve vergi formları talep üzerine doldurulur.", v2h:"Gizlilik", v2p:"Brif ya da tedarikçi adı paylaşmadan önce talep üzerine karşılıklı gizlilik sözleşmesi (NDA).", v3h:"Kişisel veri", v3p:"Yüzler ve plakalar varsayılan olarak bulanıklaştırılır. Brif gerektirmedikçe ve belgeli açık rıza olmadan kişisel veri toplanmaz (KVKK / GDPR).", v5h:"Kapsam", v5p:"Kamuya açık kayıtları temin eder, adres doğrular ve sahada kanıt toplarız. Mahkeme tebligatı yapmaz, hukuki görüş vermeyiz.", v4h:"Kapsama", v4p:"Ankara merkezli koordinasyon. Her konumdaki ziyaret, uygunluk ve erişim teyidine bağlıdır; kapsam ve takvim yazılı teklifte belirtilir.",
-    gorder:"E-postayla sipariş", gbig:"Daha büyük projeler: kapsam, fiyat ve takvim yazılı teklifte netleşir.",
-    ab0:"06 · Neden Biz", abh:"Bu veriyi yurt dışından toplayamazsınız.<br>Biz zaten buradayız.",
-    ab1:"Hestia Data, uluslararası ekipler için Ankara merkezli bir saha verisi toplama hizmetidir. Araştırma, denetim veya yapay zekâ projeniz Türkiye'den gerçek malzemeye ihtiyaç duyduğunda, sahada sizin ekibiniz biziz.",
-    ab2:"Bir AI Work School iştiraki olarak her işin kapsamını kabulden önce belirleriz. Toplama gereksinimleri, inceleme adımları ve teslim tarihi yazılı teklifte belirtilir.",
-    abb:"Bir AI Work School İştiraki", abs:"hestiadata.net · aiworkschool.com",
-    abp:"Hestia Data, AI Work School grubunun saha verisi toplama kolu olarak Türkiye’den veri arayan araştırma firmaları, yapay zekâ şirketleri ve denetim ağları için çalışır.",
-    k0:"07 · İletişim", kh:"Türkiye'den neye ihtiyacınız var, söyleyin.", kl:"Brifinizi ve konumu iletin. Uygunluk, kapsam, fiyat ve takvim siparişten önce netleşir.", kmail:"Kapsamı belirli teklif için konumu ve ihtiyaç duyduğunuz kanıtı yazın.", kphone2:"Telefon:", kaddr:"Ankara, Türkiye",
-    fdesc:"Uluslararası araştırma, denetim ve yapay zekâ ekipleri için Türkiye'den saha verisi toplama.", fgroup:"AI Work School İştirakleri", flegal:"Yasal", fpr:"Gizlilik Politikası", fte:"Hizmet Şartları", fcon:"İletişim",
-    f1:'© 2026 Hestia Data — Bir <a class="accent" href="https://aiworkschool.com">AI Work School</a> iştirakidir. Tüm hakları saklıdır.'
-  }
-};
-function setLang(l){
-  document.documentElement.lang = l;
-  document.querySelectorAll("[data-i18n]").forEach(e=>{ if(T[l][e.dataset.i18n]) e.innerText = T[l][e.dataset.i18n]; });
-  document.querySelectorAll("[data-i18n-html]").forEach(e=>{ if(T[l][e.dataset.i18nHtml]) e.innerHTML = T[l][e.dataset.i18nHtml]; });
-  document.getElementById("btn-en").classList.toggle("on", l==="en");
-  document.getElementById("btn-tr").classList.toggle("on", l==="tr");
-  try{ localStorage.setItem("hd-lang", l); }catch(e){}
-}
-try{ const s=localStorage.getItem("hd-lang"); if(s==="tr") setLang("tr"); }catch(e){}
-
-/* reveal on scroll */
-const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("on"); io.unobserve(e.target);} }),{threshold:.12});
-document.querySelectorAll(".rv").forEach(el=>io.observe(el));
-
-</script>
 </body>
 </html>
