@@ -1,0 +1,34 @@
+{
+  "status": "FICTIONAL FORMAT EXAMPLE - NOT A DELIVERED DATASET",
+  "schema_version": "illustrative-1",
+  "project_id": "EXAMPLE_ONLY",
+  "intended_use": "To be agreed before collection",
+  "episode": {
+    "id": "EXAMPLE_EPISODE",
+    "task": "Example household task",
+    "video_file": "example.mp4 (not included)",
+    "recording_time": null,
+    "duration_seconds": null,
+    "device": null,
+    "resolution": null
+  },
+  "permissions": {
+    "status": "Must be verified before any real collection",
+    "reference": "Example reference only; no real consent record"
+  },
+  "review": {
+    "criteria": "To be agreed in a reviewed sample",
+    "status": "Not reviewed; illustrative example",
+    "reviewer": null
+  },
+  "delivery": {
+    "format": "To be confirmed by sample",
+    "files": [],
+    "acceptance_status": "No delivery or customer acceptance"
+  },
+  "data_handling": {
+    "access": "To be agreed",
+    "retention": "To be agreed",
+    "deletion": "To be agreed"
+  }
+}
