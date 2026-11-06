@@ -301,11 +301,19 @@ footer{background:var(--bg);text-align:left;padding:35px 0;font-size:.8rem;line-
         <label>Name<input name="name" required="" autocomplete="name" placeholder="Your name"></label>
         <label>Work email<input name="email" required="" type="email" autocomplete="email" placeholder="you@company.com"></label>
       </div>
-      <label>Company<input name="company" autocomplete="organization" placeholder="Company"></label>
+      <label>Company (optional)<input name="company" autocomplete="organization" placeholder="Company"></label>
       <label>Your brief<textarea name="brief" required="" maxlength="5000" rows="5" placeholder="Tasks, locations, volume, format…"></textarea></label>
-      <button id="prepare-brief" class="btn" style="width:fit-content" type="submit" disabled>Prepare email brief ↗</button>
+      <div class="hero-actions">
+        <button id="prepare-brief" class="btn" style="width:fit-content" type="submit" disabled>Prepare email brief ↗</button>
+        <button id="copy-brief" class="btn ghost" style="width:fit-content" type="button" disabled>Copy brief instead</button>
+      </div>
+      <p id="brief-status" class="form-note" role="status" aria-live="polite"></p>
+      <div id="brief-fallback" hidden>
+        <label>Prepared brief<textarea id="brief-text" readonly rows="8"></textarea></label>
+        <p class="form-note">Copy this text into an email to info@segegroup.com.</p>
+      </div>
       <noscript><p class="form-note">This form needs JavaScript to prepare a draft. Email your brief directly to <a href="mailto:info@segegroup.com">info@segegroup.com</a>.</p></noscript>
-      <p class="form-note">Review and send the draft in your email app. Prefer to write directly? Email info@segegroup.com. Keep confidential files out of the initial brief.</p>
+      <p class="form-note">Review and send the draft in your email app. If it does not open, copy your brief into webmail or write directly to info@segegroup.com. Keep confidential files out of the initial brief.</p>
     </form>
   </div>
 </section>
@@ -320,12 +328,35 @@ footer{background:var(--bg);text-align:left;padding:35px 0;font-size:.8rem;line-
   </div>
 </footer>
 <script>
+const briefForm = document.getElementById('brief-form');
+const briefStatus = document.getElementById('brief-status');
+const copyBriefButton = document.getElementById('copy-brief');
+function preparedBrief() {
+  const data = new FormData(briefForm);
+  return 'Name: ' + data.get('name') + '\nWork email: ' + data.get('email') + '\nCompany: ' + data.get('company') + '\n\n' + data.get('brief');
+}
 document.getElementById('prepare-brief').disabled = false;
-document.getElementById('brief-form').addEventListener('submit', function(event) {
+copyBriefButton.disabled = false;
+briefForm.addEventListener('submit', function(event) {
   event.preventDefault();
-  const data = new FormData(this);
-  const body = 'Name: ' + data.get('name') + '\nWork email: ' + data.get('email') + '\nCompany: ' + data.get('company') + '\n\n' + data.get('brief');
-  window.location.href = 'mailto:info@segegroup.com?subject=' + encodeURIComponent('HESTIA Data project brief') + '&body=' + encodeURIComponent(body);
+  briefStatus.textContent = 'Your draft is ready. Review and send it in your email app. If it does not open, use Copy brief instead.';
+  window.location.href = 'mailto:info@segegroup.com?subject=' + encodeURIComponent('HESTIA Data project brief') + '&body=' + encodeURIComponent(preparedBrief());
+});
+copyBriefButton.addEventListener('click', async function() {
+  if (!briefForm.reportValidity()) return;
+  const body = preparedBrief();
+  try {
+    await navigator.clipboard.writeText(body);
+    document.getElementById('brief-fallback').hidden = true;
+    briefStatus.textContent = 'Brief copied. Paste it into an email to info@segegroup.com and send it.';
+  } catch {
+    const text = document.getElementById('brief-text');
+    text.value = body;
+    document.getElementById('brief-fallback').hidden = false;
+    text.focus();
+    text.select();
+    briefStatus.textContent = 'Select and copy the prepared brief below, then email it to info@segegroup.com.';
+  }
 });
 </script>
 
