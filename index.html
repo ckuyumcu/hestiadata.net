@@ -252,7 +252,7 @@ section{position:relative;padding:80px 0;border-top:1px solid var(--line)}h2{fon
 <details><summary>Can we communicate and receive the handover in English?</summary><p>An English brief, file descriptions and review notes can be agreed for the project. Tell us if interviews, local-language work, translation or specialist terminology are required. The language skills, translation scope and any specialist review must be confirmed separately; certified translation is not implied.</p></details>
 <details><summary>How are pricing, payment and the contracting entity confirmed?</summary><p>Price depends on scope, locations, people, equipment, logistics, permissions, outputs and review work. The written quote names the legal entity responsible for the agreement, invoice and payment, and confirms currency, taxes, payment method and milestones. HESTIA Data is a service brand. This website does not take payment or create an order.</p></details>
 <details><summary>When can work start, and how long will it take?</summary><p>Proposed dates depend on the task, location, access, permissions, suitable people, equipment, logistics and review requirements. We confirm the schedule in the written proposal after feasibility review. There is no blanket turnaround promise; changes to the brief or unresolved access can change the plan.</p></details>
-<details><summary>What is the best way to contact you?</summary><p>Send your project brief to <a href="mailto:info@segegroup.com">info@segegroup.com</a>, or use the <a href="#contact">brief form below</a>. The form prepares a draft for you to review and send in your email app. If it does not open, copy the brief into webmail. General enquiries can use <a href="mailto:hello@hestiadata.net">hello@hestiadata.net</a>. Share confidential files only after handling arrangements are agreed.</p></details>
+<details><summary>What is the best way to contact you?</summary><p>Send your project brief to <a href="mailto:info@segegroup.com">info@segegroup.com</a>, or use the <a href="#contact">brief form below</a>. The form submits your brief online and confirms storage with a server receipt. Email and copy are separate manual options; opening or copying an email draft does not confirm delivery. General enquiries can use <a href="mailto:hello@hestiadata.net">hello@hestiadata.net</a>. Share confidential files only after handling arrangements are agreed.</p></details>
 </div></div>
     <div class="faq-next"><div><h3>A question specific to your project?</h3><p>Tell us the task, location and intended use. We will review what needs to be resolved before a proposal.</p></div><a class="btn" href="#contact">Start with your brief</a></div>
   </div>
@@ -273,16 +273,17 @@ section{position:relative;padding:80px 0;border-top:1px solid var(--line)}h2{fon
       <label>Service area (optional)<select id="brief-service" name="service"><option value="">Choose a service</option><option value="AI training data">AI training data</option><option value="Field services">Field services</option><option value="Physical AI recording pilot">Physical AI recording pilot</option></select></label>
       <label>Your brief<textarea name="brief" required="" maxlength="5000" rows="5" placeholder="Task definition, capture specification, location, output format, acceptance criteria…"></textarea></label>
       <div class="hero-actions">
-        <button id="prepare-brief" class="btn" style="width:fit-content" type="submit" disabled>Prepare email brief ↗</button>
-        <button id="copy-brief" class="btn ghost" style="width:fit-content" type="button" disabled>Copy brief instead</button>
+        <button id="prepare-brief" class="btn" style="width:fit-content" type="submit" disabled>Send brief</button>
+        <button id="copy-brief" class="btn ghost" style="width:fit-content" type="button" disabled>Copy brief</button>
+        <button id="email-brief" class="btn ghost" style="width:fit-content" type="button" disabled>Prepare email draft ↗</button>
       </div>
       <p id="brief-status" class="form-note" role="status" aria-live="polite"></p>
       <div id="brief-fallback" hidden>
         <label>Prepared brief<textarea id="brief-text" readonly rows="8"></textarea></label>
         <p class="form-note">Copy this text into an email to info@segegroup.com.</p>
       </div>
-      <noscript><p class="form-note">This form needs JavaScript to prepare a draft. Email your brief directly to <a href="mailto:info@segegroup.com">info@segegroup.com</a>.</p></noscript>
-      <p class="form-note">Review and send the draft in your email app. If it does not open, copy your brief into webmail or write directly to info@segegroup.com. Keep confidential files out of the initial brief.</p>
+      <noscript><p class="form-note">Online submission needs JavaScript. Email your brief directly to <a href="mailto:info@segegroup.com">info@segegroup.com</a>.</p></noscript>
+      <p id="brief-delivery-note" class="form-note">Submit the brief and wait for its server receipt. Briefs are available to authorised reviewers for 90 days. Email is a separate manual route. Keep confidential files out of the initial brief.</p>
     </form>
   </div>
 </section>
@@ -330,15 +331,156 @@ section{position:relative;padding:80px 0;border-top:1px solid var(--line)}h2{fon
   }
 })();
 </script>
-<script>
-const briefForm = document.getElementById('brief-form');
-const briefStatus = document.getElementById('brief-status');
-const copyBriefButton = document.getElementById('copy-brief');
-function preparedBrief() {
-  const data = new FormData(briefForm);
-  const service = data.get('service');
-  return (service ? 'Service: ' + service + '\n' : '') + 'Name: ' + data.get('name') + '\nWork email: ' + data.get('email') + '\nCompany: ' + data.get('company') + '\n\n' + data.get('brief');
+<script type="module" id="hestia-delivery">
+// Unmounted candidate. No globals, listeners, storage or network at import.
+const attrKeys=['utm_source','utm_medium','utm_campaign','utm_content'];
+const services=['','AI training data','Field services','Physical AI recording pilot'];
+const invalid=()=>{throw Error('validation');};
+function captureAttribution({campaign,search=''}={}){
+ let input={};try{if(typeof campaign?.get==='function')input=campaign.get();}catch{}
+ if(!input||typeof input!=='object'||Array.isArray(input))input={};
+ const query=new URLSearchParams(search.replace(/&amp;(?=utm_)/g,'&')),out={};
+ for(const k of attrKeys){const raw=input[k]??query.get(k);if(typeof raw==='string'&&raw.length<=100){const value=raw.trim();if(/^[a-zA-Z0-9 _.-]{1,100}$/.test(value))out[k]=value;}}
+ return out;
 }
+function createBriefSnapshot(readAttribution=()=>({})){
+ let attribution=captureAttribution({campaign:{get:readAttribution}});
+ return {read:fields=>({...fields,attribution:{...attribution}}),startDifferentBrief(){attribution=captureAttribution({campaign:{get:readAttribution}});}};
+}
+function normalizeBrief(input){
+ if(!input||Array.isArray(input)||typeof input!=='object'||Object.keys(input).some(k=>!['name','email','company','service','brief','attribution'].includes(k)))invalid();
+ const out={};
+ for(const [key,max,required] of [['name',120,true],['email',254,true],['company',200,false],['service',100,false],['brief',5000,true]]){
+  const v=input[key]??'';if(typeof v!=='string'||v.length>max||/[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]/.test(v))invalid();
+  out[key]=v.trim();if(required&&!out[key])invalid();
+ }
+ if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(out.email)||!services.includes(out.service))invalid();
+ const a=input.attribution??{};
+ if(!a||Array.isArray(a)||typeof a!=='object'||Object.entries(a).some(([k,v])=>!attrKeys.includes(k)||typeof v!=='string'||!/^[a-zA-Z0-9 _.-]{1,100}$/.test(v)))invalid();
+ out.attribution=Object.fromEntries(attrKeys.filter(k=>a[k]!==undefined).map(k=>[k,a[k]]));return out;
+}
+const PRODUCTION_BINDING=Object.freeze({kind:'production',origin:'https://hestiadata.net',apiOrigin:'https://ortak-akil.onrender.com'});
+const PRODUCTION_DELIVERY_NOTE='Submit the brief and wait for its server receipt. Briefs are available to authorised reviewers for 90 days. Email is a separate manual route. Keep confidential files out of the initial brief.';
+function validateBinding(binding){
+ if(!binding||typeof binding!=='object'||Array.isArray(binding))throw Error('production_unbound');
+ if(binding.kind==='production'){
+  if(Object.keys(binding).sort().join(',')!=='apiOrigin,kind,origin'||binding.origin!==PRODUCTION_BINDING.origin||binding.apiOrigin!==PRODUCTION_BINDING.apiOrigin)throw Error('production_unbound');
+  return {production:true,origin:binding.origin,endpoint:binding.apiOrigin+'/api/hestia/briefs'};
+ }
+ if(binding.kind!=='local-synthetic'||Object.keys(binding).sort().join(',')!=='kind,origin')throw Error('production_unbound');
+ const u=new URL(binding.origin);
+ if(u.protocol!=='http:'||!['127.0.0.1','hestia-delivery-fixture.localhost'].includes(u.hostname)||u.origin!==binding.origin||u.username||u.password)throw Error('production_unbound');
+ return {production:false,origin:binding.origin,endpoint:binding.origin+'/synthetic/hestia/briefs'};
+}
+function createFetchTransport({binding,fetch}={}){
+ const cfg=validateBinding(binding);if(typeof fetch!=='function')throw Error('configuration');
+ return (body,{signal})=>fetch(cfg.endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body,signal,mode:'cors',credentials:'omit',cache:'no-store',redirect:'error',referrerPolicy:'no-referrer'});
+}
+function validReceipt(status,b){
+ if(!b||typeof b!=='object'||Array.isArray(b)||Object.keys(b).sort().join(',')!=='acceptedAt,duplicate,expiresAt,receipt,stored')return false;
+ if(b.stored!==true||!/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(b.receipt))return false;
+ if((status!==201||b.duplicate!==false)&&(status!==200||b.duplicate!==true))return false;
+ const a=Date.parse(b.acceptedAt),e=Date.parse(b.expiresAt);
+ return Number.isFinite(a)&&Number.isFinite(e)&&new Date(a).toISOString()===b.acceptedAt&&new Date(e).toISOString()===b.expiresAt&&e-a===90*86400000;
+}
+function createDeliveryController({binding,transport,makeId=()=>crypto.randomUUID(),timeoutMs=10000,onState=()=>{}}={}){
+ const cfg=validateBinding(binding);
+ if(typeof transport!=='function'||!Number.isInteger(timeoutMs)||timeoutMs<1||timeoutMs>30000)throw Error('configuration');
+ const attempts=new Map();let selected=null,validation=false,disposed=false;
+ function snapshot(){
+  const r=attempts.get(selected),otherUncertain=[...attempts.entries()].filter(([k,v])=>k!==selected&&(v.state==='pending'||v.uncertain)).length;
+  return Object.freeze({state:validation?'failed':r?.state??'idle',reason:validation?'validation':r?.reason??null,requestId:r?.id??null,receipt:r?.receipt??null,acceptedAt:r?.acceptedAt??null,expiresAt:r?.expiresAt??null,retryable:!validation&&!!r?.retryable,uncertain:!!r?.uncertain,otherUncertain});
+ }
+ const emit=()=>{if(!disposed)onState(snapshot());};
+ function edit(input){if(disposed)throw Error('disposed');try{selected=JSON.stringify(normalizeBrief(input));validation=false;}catch{selected=null;validation=true;}emit();return snapshot();}
+ function submit(input){
+  if(disposed)throw Error('disposed');edit(input);if(validation)return Promise.resolve(snapshot());
+  const key=selected;let r=attempts.get(key);
+  if(r?.state==='pending')return r.promise;
+  if(r?.state==='stored'||r&&!r.retryable)return Promise.resolve(snapshot());
+  if(!r){
+   if(attempts.size>=64){validation=true;emit();return Promise.resolve(snapshot());}
+   const id=makeId();if(typeof id!=='string'||!/^[a-zA-Z0-9-]{12,80}$/.test(id)||[...attempts.values()].some(a=>a.id===id))throw Error('request_id');
+   const body=JSON.stringify({request_id:id,...JSON.parse(key)});
+   if(new TextEncoder().encode(body).length>16000){validation=true;emit();return Promise.resolve(snapshot());}
+   r={id,body,state:'idle',retryable:true,uncertain:false,token:0};attempts.set(key,r);
+  }
+  r.state='pending';r.reason=null;r.retryable=false;const token=++r.token;const abort=new AbortController();r.abort=abort;
+  let finish,timer;
+  r.promise=new Promise(resolve=>{finish=resolve;});
+  function settle(outcome){
+   if(r.token!==token||disposed)return;
+   ++r.token;clearTimeout(timer);r.abort=null;
+   if(outcome.kind==='receipt'){Object.assign(r,outcome.body,{state:'stored',reason:null,retryable:false,uncertain:false});}
+   else if(outcome.kind==='rejected'){
+    const terminal=[409,410].includes(outcome.status);
+    r.state=r.uncertain&&!terminal?'unknown':'failed';r.reason=terminal?(outcome.status===409?'conflict':'expired'):'rejected';r.retryable=!terminal;r.uncertain=r.uncertain||terminal;
+   }else{r.state='unknown';r.reason=outcome.reason;r.retryable=true;r.uncertain=true;}
+   emit();finish(snapshot());
+  }
+  r.cancel=()=>{settle({kind:'unknown',reason:'aborted'});abort.abort();};
+  timer=setTimeout(()=>{settle({kind:'unknown',reason:'timeout'});abort.abort();},timeoutMs);
+  emit();
+  Promise.resolve().then(()=>transport(r.body,{signal:abort.signal})).then(async response=>{
+   let b;try{if(cfg.production&&(response.url!==cfg.endpoint||!/^application\/json(?:\s*;|$)/i.test(response.headers?.get?.('content-type')||'')))throw Error('response_provenance');b=await response.json();}catch{settle({kind:'unknown',reason:'invalid_response'});return;}
+   if(validReceipt(response.status,b)){settle({kind:'receipt',body:b});return;}
+   if([400,401,403,405,409,410,413,415].includes(response.status)&&b?.stored===false&&typeof b.error==='string'&&/^[a-z_]+$/.test(b.error))settle({kind:'rejected',status:response.status});
+   else settle({kind:'unknown',reason:response.status===429?'rate_limited':response.status>=500?'server_error':'invalid_response'});
+  }).catch(()=>settle({kind:'unknown',reason:abort.signal.aborted?'aborted':'network'}));
+  return r.promise;
+ }
+ return {edit,submit,snapshot,cancel(){attempts.get(selected)?.cancel?.();},
+  dispose(){if(!disposed){for(const r of attempts.values()){if(r.state==='pending')r.cancel();++r.token;}disposed=true;attempts.clear();selected=null;}}
+ };
+}
+function mountDelivery({binding,document:doc=globalThis.document,window:win=globalThis.window,timeoutMs=10000}={}){
+ // Default closed: legacy mailto and clipboard listeners retain full ownership.
+ if(!binding)return {enabled:false};
+ const cfg=validateBinding(binding);if(win.location.origin!==cfg.origin)throw Error('production_unbound');
+ const form=doc.getElementById('brief-form'),status=doc.getElementById('brief-status'),button=doc.getElementById('prepare-brief');
+ if(!form||!status||!button)throw Error('form_missing');
+ const oldButton=button.textContent,copy=doc.getElementById('copy-brief'),legacyNote=doc.getElementById('brief-delivery-note')||Array.from(form.querySelectorAll('.form-note')).find(p=>p.textContent.startsWith('Review and send the draft'));
+ const oldNote=legacyNote?.textContent;
+ if(legacyNote)legacyNote.textContent=cfg.production?PRODUCTION_DELIVERY_NOTE:'Submit to the local test and wait for its receipt. Email is a separate manual route. Keep confidential files out of the initial brief.';
+ const cancel=doc.createElement('button');cancel.type='button';cancel.className='btn ghost';cancel.style.width='fit-content';cancel.textContent='Stop waiting';cancel.hidden=true;
+ const again=doc.createElement('button');again.type='button';again.className='btn ghost';again.style.width='fit-content';again.textContent='Start a different brief';
+ const notice=doc.createElement('p');notice.className='form-note';notice.textContent=(cfg.production?'':'Local synthetic delivery test. ')+'Keep this tab open to retry the same brief safely. Reloading loses retry tracking. Email and copy are separate manual options; copying does not confirm delivery.';
+ const receipt=doc.createElement('p');receipt.className='form-note';receipt.setAttribute('aria-live','polite');
+ const copyStatus=doc.createElement('p');copyStatus.className='form-note';copyStatus.setAttribute('role','status');
+ status.setAttribute('role','status');status.setAttribute('aria-live','polite');
+ form.append(notice,cancel,again,receipt,copyStatus);
+ const briefSnapshot=createBriefSnapshot(()=>captureAttribution({campaign:win.CampaignAttribution,search:win.location.search}));
+ const input=()=>briefSnapshot.read(Object.fromEntries(['name','email','company','service','brief'].map(k=>[k,new win.FormData(form).get(k)??''])));
+ const controller=createDeliveryController({binding,timeoutMs,makeId:()=>win.crypto.randomUUID(),transport:createFetchTransport({binding,fetch:win.fetch.bind(win)}),onState:s=>{
+  copyStatus.textContent='';
+  const messages={idle:'Edited brief is ready for a new submission.',pending:'Waiting for the server receipt. Avoid sending this brief by email while waiting.',stored:'Brief stored. Server receipt confirmed.',unknown:'Delivery is unknown. Retry the unchanged brief with the same request ID; do not also email it.',failed:s.reason==='validation'?'Check the form fields. No request was sent.':s.reason==='conflict'?'Request conflict. Delivery needs checking; do not start the same brief again.':s.reason==='expired'?'This request has expired. Delivery needs checking; do not start the same brief again.':'Server rejected this attempt. A stored receipt has not been confirmed.'};
+  status.textContent=messages[s.state]+(s.otherUncertain?' An earlier brief may still have been stored.':'');
+  receipt.textContent=s.receipt?'Receipt: '+s.receipt+' | Accepted: '+s.acceptedAt+' | Accessible until: '+s.expiresAt:'';
+  button.disabled=s.state==='pending'||s.state==='stored'||s.state==='failed'&&!s.retryable&&s.reason!=='validation';
+  button.textContent=s.state==='unknown'||s.retryable?'Retry same brief':s.otherUncertain?'Send edited brief as new submission':cfg.production?'Send brief':'Send brief to local test';
+  cancel.hidden=s.state!=='pending';
+ }});
+ const change=()=>controller.edit(input());
+ const submit=e=>{e.preventDefault();e.stopImmediatePropagation();if(form.reportValidity())controller.submit(input());};
+ const stop=()=>controller.cancel();
+ const restart=()=>{form.reset();briefSnapshot.startDifferentBrief();controller.edit(input());copyStatus.textContent='A different brief was started. Campaign labels were refreshed from the current page. Earlier delivery remains as reported.';};
+ const copyOnly=async e=>{
+  e.preventDefault();e.stopImmediatePropagation();if(!form.reportValidity())return;
+  const v=input(),body=(v.service?'Service: '+v.service+'\n':'')+'Name: '+v.name+'\nWork email: '+v.email+'\nCompany: '+v.company+'\n\n'+v.brief;
+  try{await win.navigator.clipboard.writeText(body);doc.getElementById('brief-fallback').hidden=true;copyStatus.textContent='Brief copied. Copying does not confirm or change delivery. Check the delivery status before using email.';}
+  catch{const text=doc.getElementById('brief-text');text.value=body;doc.getElementById('brief-fallback').hidden=false;text.focus();text.select();copyStatus.textContent='Select and copy the brief below. Copying does not confirm or change delivery. Check the delivery status before using email.';}
+ };
+ const email=doc.getElementById('email-brief');
+ const emailOnly=e=>{e.preventDefault();e.stopImmediatePropagation();if(!form.reportValidity())return;const s=controller.snapshot();if(s.uncertain||s.state==='pending'||s.otherUncertain){copyStatus.textContent='Delivery is pending or unknown. Retry the unchanged brief before choosing another delivery route.';return;}if(s.state==='stored'){copyStatus.textContent='This brief already has a server receipt. No email draft was opened.';return;}const v=input(),body=(v.service?'Service: '+v.service+'\n':'')+'Name: '+v.name+'\nWork email: '+v.email+'\nCompany: '+v.company+'\n\n'+v.brief;copyStatus.textContent='Email draft prepared. Review and send it in your email app. Opening a draft does not confirm delivery.';win.location.href='mailto:info@segegroup.com?subject='+encodeURIComponent('HESTIA Data project brief')+'&body='+encodeURIComponent(body);};
+ form.addEventListener('submit',submit,true);form.addEventListener('input',change);form.addEventListener('change',change);
+ cancel.addEventListener('click',stop);again.addEventListener('click',restart);copy?.addEventListener('click',copyOnly,true);email?.addEventListener('click',emailOnly,true);if(copy)copy.disabled=false;if(email)email.disabled=false;button.disabled=false;button.textContent=cfg.production?'Send brief':'Send brief to local test';
+ status.textContent=cfg.production?'Send your brief and wait for its server receipt.':'Local synthetic delivery enabled. No real service is connected.';
+ return {enabled:true,controller,dispose(){controller.dispose();form.removeEventListener('submit',submit,true);form.removeEventListener('input',change);form.removeEventListener('change',change);cancel.removeEventListener('click',stop);again.removeEventListener('click',restart);copy?.removeEventListener('click',copyOnly,true);email?.removeEventListener('click',emailOnly,true);cancel.remove();again.remove();notice.remove();receipt.remove();copyStatus.remove();button.disabled=true;if(copy)copy.disabled=true;if(email)email.disabled=true;button.textContent=oldButton;if(legacyNote)legacyNote.textContent=oldNote;status.textContent='Online submission unavailable. Use the direct email links for a separate manual enquiry.';}};
+}
+function mountLocalDelivery(options={}){if(options.binding&&options.binding.kind!=='local-synthetic')throw Error('production_unbound');return mountDelivery(options);}
+function mountProductionDelivery(options={}){if(options.binding?.kind!=='production')throw Error('production_unbound');return mountDelivery(options);}
+
+const briefStatus=document.getElementById('brief-status');
 document.querySelectorAll('[data-brief-service]').forEach(function(link) {
   link.addEventListener('click', function(event) {
     event.preventDefault();
@@ -349,29 +491,8 @@ document.querySelectorAll('[data-brief-service]').forEach(function(link) {
     service.focus({ preventScroll: true });
   });
 });
-document.getElementById('prepare-brief').disabled = false;
-copyBriefButton.disabled = false;
-briefForm.addEventListener('submit', function(event) {
-  event.preventDefault();
-  briefStatus.textContent = 'Your draft is ready. Review and send it in your email app. If it does not open, use Copy brief instead.';
-  window.location.href = 'mailto:info@segegroup.com?subject=' + encodeURIComponent('HESTIA Data project brief') + '&body=' + encodeURIComponent(preparedBrief());
-});
-copyBriefButton.addEventListener('click', async function() {
-  if (!briefForm.reportValidity()) return;
-  const body = preparedBrief();
-  try {
-    await navigator.clipboard.writeText(body);
-    document.getElementById('brief-fallback').hidden = true;
-    briefStatus.textContent = 'Brief copied. Paste it into an email to info@segegroup.com and send it.';
-  } catch {
-    const text = document.getElementById('brief-text');
-    text.value = body;
-    document.getElementById('brief-fallback').hidden = false;
-    text.focus();
-    text.select();
-    briefStatus.textContent = 'Select and copy the prepared brief below, then email it to info@segegroup.com.';
-  }
-});
+
+try{mountProductionDelivery({binding:PRODUCTION_BINDING});}catch{document.getElementById('brief-status').textContent='Online submission is unavailable on this page. Use the direct email links for a separate manual enquiry.';}
 </script>
 
 </body>
