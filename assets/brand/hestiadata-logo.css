@@ -39,3 +39,18 @@
   padding: 20px 0;
   border-top: 1px solid #ddd;
 }
+
+.aw-footer-brand picture {
+  display: block;
+  max-width: 100%;
+}
+
+@media (prefers-color-scheme: dark) {
+  .aw-brand-footer {
+    background: #172a36;
+    border-color: #496575;
+  }
+  .aw-brand-footer .aw-footer-brand:focus-visible {
+    outline-color: #a6e3d0;
+  }
+}
