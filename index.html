@@ -91,10 +91,6 @@ section{position:relative;padding:80px 0;border-top:1px solid var(--line)}h2{fon
 .archive-example ol{margin:0;padding:0 0 0 1.6rem}.archive-example li{padding:.45rem .3rem;border-top:1px solid var(--line)}.archive-example li span{display:block;font-size:.88rem;color:var(--muted)}
 .existing-services{margin:1.8rem 0 .65rem}
 @media(max-width:760px){.archive-routes{grid-template-columns:1fr}.hero-intro>.archive-example{order:5}.archive-routes article{scroll-margin-top:9rem}}
-@media (max-width: 760px) {
-  .home .hero-banner .hero-intro { row-gap: 1rem; padding-block-start: 2rem; }
-  .hero-banner .hero-copy .cta { order: 2; gap: .75rem; }
-}
 </style>
 <link rel="stylesheet" href="/assets/brand/hestiadata-logo.css?v=20261120-full">
 <link rel="stylesheet" href="/assets/hestia-site.css">
@@ -123,7 +119,7 @@ section{position:relative;padding:80px 0;border-top:1px solid var(--line)}h2{fon
   <h1>Project records for <span>AI training and evaluation.</span></h1>
   <p class="lead">Tell us which records you need from a public- or private-sector construction project, power plant or industrial facility in Türkiye. HESTIA can supply the agreed records once we obtain written licensing rights from the relevant rights holder for that project.</p>
   <div class="cta">
-    <a class="btn" href="#contact" data-brief-service="archive-buyer">I need project data</a>
+    <a class="btn" href="#archive-buyers">I need project data</a>
     <a class="btn ghost" href="/assets/samples/solar-project-records-en.pdf" type="application/pdf">View synthetic solar sample (PDF)</a>
     <a class="btn ghost" href="#archive-owners">I hold project records</a>
   </div>
@@ -155,12 +151,11 @@ section{position:relative;padding:80px 0;border-top:1px solid var(--line)}h2{fon
         <h3>For AI data buyers</h3>
         <p>You can request records from public- and private-sector construction projects, power plants and industrial facilities. For each project, specify the records, language, file format, approximate volume and intended use. Include your acceptance criteria, indicative budget and payment terms.</p>
         <ul>
-          <li><strong>Construction project</strong> · Drawings, technical specifications, technical questions and responses, approved revisions and site acceptance records.</li>
           <li><strong>Power plant</strong> · Approved project drawings, site revisions, and commissioning and acceptance records.</li>
           <li><strong>Industrial facility</strong> · Technical specifications, maintenance work orders, and inspection and quality test reports.</li>
         </ul>
-        <p>After you describe what you need, HESTIA agrees the scope and obtains written permission to license the requested records from the relevant rights holder in Türkiye. We price each project separately and sign a separate licence with you.</p>
-        <p>HESTIA is your sole point of contact for the quote, rights and technical questions, contract, delivery and payment. We invoice you for the agreed records. You and your downstream customers work through HESTIA for all source enquiries. We accept only requests that can be fulfilled without direct contact with the source.</p>
+        <p>HESTIA can supply the requested records after obtaining a written licence from the relevant rights holder for that project. We price each project separately and sign a separate licence with you.</p>
+        <p>HESTIA is your sole point of contact for contracting, delivery and payment. We invoice you for the agreed records. You and your downstream customers also work through HESTIA for rights checks and technical questions. We accept only requests that can be fulfilled without direct contact with the source.</p>
         <p>The licence identifies the permitted uses and users, duration and any exclusivity. If you need engineering review, matching or annotation, include it in your scope.</p>
         <a class="btn" href="#contact" data-brief-service="archive-buyer">Describe the data you need</a>
       </article>
@@ -354,8 +349,7 @@ section{position:relative;padding:80px 0;border-top:1px solid var(--line)}h2{fon
       </div>
       <label>Company (optional)<input name="company" maxlength="200" autocomplete="organization" placeholder="Company"></label>
       <label>Service area (optional)<select id="brief-service" name="service"><option value="">Choose a service</option><option value="archive-owner">Archive owner</option><option value="archive-buyer">AI data buyer</option><option value="AI training data">AI training data</option><option value="Field services">Field services</option><option value="Physical AI recording pilot">Physical AI recording pilot</option></select></label>
-      <p id="brief-licensing-guide" class="form-note">For a buyer request, cover one project. Include the sector, record types, language and file format, estimated volume, intended use, acceptance criteria, budget and proposed payment period. Leave out project names, confidential files and rights-holder contact details.</p>
-      <label>Your brief<textarea name="brief" aria-describedby="brief-licensing-guide" required="" maxlength="5000" rows="5" placeholder="Record type, language, volume and intended use, or fieldwork requirements…"></textarea></label>
+      <label>Your brief<textarea name="brief" required="" maxlength="5000" rows="5" placeholder="Record type, language, volume and intended use, or fieldwork requirements…"></textarea></label>
       <div class="hero-actions">
         <button id="prepare-brief" class="btn" style="width:fit-content" type="submit" disabled>Send brief</button>
         <button id="copy-brief" class="btn ghost" style="width:fit-content" type="button" disabled>Copy brief</button>
