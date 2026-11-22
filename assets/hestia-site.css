@@ -26,8 +26,6 @@
 }
 
 .site-header nav a:hover { color: var(--cyan); }
-.site-header a:focus-visible, .site-header button:focus-visible,
-.hero-banner a:focus-visible { outline-color: var(--cyan); }
 
 .home .btn {
   border-radius: .25rem;
@@ -57,6 +55,7 @@
 .hero-banner .hero-intro { padding-block: clamp(3rem, 6vw, 6rem); }
 .hero-banner h1 { font-weight: 700; }
 .hero-banner h1 span, .hero-banner .pill { color: var(--cyan); }
+.hero-banner .pill { max-width: none; }
 .hero-banner .pill::before { width: 1.5rem; height: 2px; border-radius: 0; background: var(--cyan); }
 .hero-banner .lead { color: #d3e1ec; font-size: 1.05rem; }
 .home .hero-banner .btn.ghost {
