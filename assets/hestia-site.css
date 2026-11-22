@@ -1,0 +1,149 @@
+:root {
+  color-scheme: light;
+  --navy: #0d1b2b;
+  --cyan: #78d8ed;
+  --steel: #a9bfd0;
+  --bg: #f4f7f9;
+  --paper: #fff;
+  --ink: #142638;
+  --muted: #435a70;
+  --accent: #a62931;
+  --green: #22607a;
+  --line: #cad6e0;
+  --focus: #1b6789;
+}
+
+.site-header {
+  background: var(--navy);
+  border-color: #2b4056;
+  color: #eef5fa;
+}
+
+.site-header nav a {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.site-header nav a:hover { color: var(--cyan); }
+.site-header a:focus-visible, .site-header button:focus-visible,
+.hero-banner a:focus-visible { outline-color: var(--cyan); }
+
+.home .btn {
+  border-radius: .25rem;
+  background: var(--accent);
+  color: #fff;
+}
+
+.home .btn:hover { background: #84212a; box-shadow: none; }
+.home .btn.ghost { background: transparent; color: var(--ink); }
+.home .btn.ghost:hover { color: var(--accent); }
+.home .btn.am { background: #dbeaf2; border-color: #acbdca; color: var(--ink); }
+.home .btn.am:hover { background: #c8dee9; }
+.home .motion-toggle { background: #162b3e; border-color: #597186; color: #eef5fa; }
+.home .motion-toggle:hover { background: #25435c; }
+
+.home .hero { padding: 0; background: none; }
+.hero-banner {
+  color: #f2f7fb;
+  background:
+    radial-gradient(ellipse at 72% 45%, #1d3b5359, transparent 68%),
+    repeating-linear-gradient(0deg, transparent 0 31px, #8ab2d00c 31px 32px),
+    repeating-linear-gradient(90deg, transparent 0 31px, #8ab2d00c 31px 32px),
+    var(--navy);
+  border-bottom: 1px solid #2e465d;
+}
+
+.hero-banner .hero-intro { padding-block: clamp(3rem, 6vw, 6rem); }
+.hero-banner h1 { font-weight: 700; }
+.hero-banner h1 span, .hero-banner .pill { color: var(--cyan); }
+.hero-banner .pill::before { width: 1.5rem; height: 2px; border-radius: 0; background: var(--cyan); }
+.hero-banner .lead { color: #d3e1ec; font-size: 1.05rem; }
+.home .hero-banner .btn.ghost {
+  padding-inline: 1.15rem;
+  border: 1px solid #71899d;
+  border-radius: .25rem;
+  color: #eef5fa;
+}
+.home .hero-banner .btn.ghost:hover { background: #253c52; color: #fff; }
+
+.hero-banner .archive-example {
+  justify-self: end;
+  max-width: 31rem;
+  margin: 0;
+  padding: clamp(1rem, 3vw, 2rem);
+  transform: none;
+  border: 1px solid #55738b;
+  border-radius: .3rem;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 23px, #8fb6dd13 23px 24px),
+    repeating-linear-gradient(90deg, transparent 0 23px, #8fb6dd13 23px 24px),
+    #12263a;
+  box-shadow: none;
+}
+.hero-banner .archive-example::before { display: none; }
+.archive-example .map-heading, .archive-example .map-caption { color: var(--steel); }
+.archive-example .map-heading { font-size: .72rem; }
+.archive-example .map-caption { border-color: #52718b; font-size: .75rem; line-height: 1.55; }
+.hero-banner .archive-example ol { list-style: decimal-leading-zero; padding-inline-start: 1.65rem; }
+.hero-banner .archive-example li { padding-block: .55rem; border-color: #39546e; }
+.hero-banner .archive-example li::marker, .hero-banner .archive-example li strong { color: var(--cyan); }
+.hero-banner .archive-example li span { color: #d3e1ec; }
+
+.home .hero-content { padding-bottom: clamp(2.75rem, 5vw, 5rem); }
+.home #archive-licensing { margin-top: 0; padding-top: clamp(2.75rem, 5vw, 4.5rem); border-top: 0; }
+.home #archive-licensing .sub a { color: #1c5379; font-weight: 600; }
+.home .existing-services { margin-top: 2.75rem; }
+
+.home #ai-data, .home #physical-ai, .home #contact, .home .coverage-band { background: #eaf1f6; }
+.home #field, .home #samples, .home #process, .home #faq { background: var(--bg); }
+.home #ai-data h2::before, .home #field h2::before, .home #physical-ai h2::before { content: none; }
+.home .archive-routes article, .home .offer, .home .card, .home .task, .home .city,
+.home .coverage-places span, .home .physical-scope, .home .faq-topics a,
+.home .faq-group, .home .faq-next, .home form {
+  background: var(--paper);
+  border-color: var(--line);
+  border-radius: .35rem;
+  box-shadow: none;
+}
+.home .offer:hover { box-shadow: 0 9px 22px #1b36541a; }
+.home .offer-art, .home .offer li, .home .faq-group details, .home details { border-color: var(--line); }
+.home .offer-number, .home .tag, .home .step .n, .home .step::after { color: var(--green); }
+.home .offer p, .home .offer li, .home .step p, .home .form-note { color: var(--muted); }
+.home .step { border-color: #7b9bb5; }
+.home details[open], .home .faq-group details[open] { background: #f0f5f8; }
+.home input, .home textarea, .home select { border-color: #8fa5b7; border-radius: .25rem; }
+.home #contact a:not(.btn) { color: #1c5379 !important; }
+
+.interior { max-width: none; margin: 0; padding: 0; background: var(--bg); color: var(--ink); }
+.interior .wrap { max-width: 54rem; margin-inline: auto; padding-inline: clamp(1.25rem, 5vw, 3rem); }
+.interior .site-header { padding-block: 1rem; border-bottom: 1px solid #2b4056; }
+.interior .site-header .wrap, .interior .site-header nav { display: flex; align-items: center; flex-wrap: wrap; gap: .65rem 1.5rem; }
+.interior .site-header .wrap { justify-content: space-between; }
+.interior .site-header img { display: block; width: 118px; height: auto; }
+.interior h1 { color: var(--ink); font-size: clamp(2rem, 5vw, 3.3rem); letter-spacing: -.045em; }
+.interior h2 { color: var(--ink); }
+.interior a:not(.site-header a) { color: #1c5379; }
+.interior p { color: var(--muted); }
+.interior .about-copy { padding-block: clamp(2.25rem, 6vw, 4.5rem); }
+.interior .about-copy h2 { font-size: 1.25rem; margin-top: 2rem; }
+.interior .aw-brand-footer { margin-top: 0; border-color: var(--line); }
+.interior #licensing-assistant {
+  padding: clamp(1rem, 3vw, 1.5rem);
+  background: #eaf2f7;
+  border: 1px solid #b9cbd9;
+  border-radius: .35rem;
+}
+.interior #licensing-assistant button { background: var(--navy); border-radius: .25rem; }
+
+.home a:focus-visible, .home button:focus-visible, .home summary:focus-visible,
+.home input:focus-visible, .home textarea:focus-visible, .home select:focus-visible,
+.interior a:focus-visible, .interior #licensing-assistant button:focus-visible { outline-color: var(--focus); }
+.home .site-header a:focus-visible, .home .site-header button:focus-visible,
+.home .hero-banner a:focus-visible, .interior .site-header a:focus-visible { outline-color: var(--cyan); }
+
+@media (max-width: 760px) {
+  .hero-banner .hero-intro { padding-block: 2.75rem; }
+  .hero-banner .archive-example { justify-self: start; }
+}
+
