@@ -354,10 +354,8 @@ section{position:relative;padding:80px 0;border-top:1px solid var(--line)}h2{fon
       </div>
       <label>Company (optional)<input name="company" maxlength="200" autocomplete="organization" placeholder="Company"></label>
       <label>Service area (optional)<select id="brief-service" name="service"><option value="">Choose a service</option><option value="archive-owner">Archive owner</option><option value="archive-buyer">AI data buyer</option><option value="AI training data">AI training data</option><option value="Field services">Field services</option><option value="Physical AI recording pilot">Physical AI recording pilot</option></select></label>
-      <label>Your brief
-        <span id="brief-licensing-guide" class="form-note">For a buyer request, cover one project. Include the sector, record types, language and file format, estimated volume, intended use, acceptance criteria, budget and proposed payment period. Leave out project names, confidential files and rights-holder contact details.</span>
-        <textarea name="brief" aria-describedby="brief-licensing-guide" required="" maxlength="5000" rows="5" placeholder="Record type, language, volume and intended use, or fieldwork requirements…"></textarea>
-      </label>
+      <p id="brief-licensing-guide" class="form-note">For a buyer request, cover one project. Include the sector, record types, language and file format, estimated volume, intended use, acceptance criteria, budget and proposed payment period. Leave out project names, confidential files and rights-holder contact details.</p>
+      <label>Your brief<textarea name="brief" aria-describedby="brief-licensing-guide" required="" maxlength="5000" rows="5" placeholder="Record type, language, volume and intended use, or fieldwork requirements…"></textarea></label>
       <div class="hero-actions">
         <button id="prepare-brief" class="btn" style="width:fit-content" type="submit" disabled>Send brief</button>
         <button id="copy-brief" class="btn ghost" style="width:fit-content" type="button" disabled>Copy brief</button>
