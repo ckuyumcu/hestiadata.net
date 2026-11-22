@@ -30,6 +30,12 @@
     p{margin:0;color:var(--muted)}
     article>p{font-size:1.075rem;margin-bottom:2rem}
     section{padding-block:1.25rem;border-block-start:1px solid var(--line);scroll-margin-top:1.5rem}
+    #licensing-assistant{margin-block-end:1.25rem}
+    #licensing-assistant button{margin-block:1rem .55rem;padding:.65rem 1rem;border:1px solid var(--ink);border-radius:.4rem;background:var(--ink);color:#fff;cursor:pointer;font:inherit;font-weight:650}
+    #licensing-assistant button:disabled{opacity:.65;cursor:wait}
+    #licensing-assistant button:focus-visible{outline:3px solid #22705b;outline-offset:4px}
+    #licensing-chat-panel:not([hidden]){margin-block-start:1rem}
+    #licensing-chat-panel elevenlabs-convai{display:block;min-height:23rem}
     footer{border-block-start:1px solid var(--line);border-block-end:0}
     .skip-link{position:absolute;inset-block-start:.5rem;inset-inline-start:.5rem;background:var(--paper);padding:.5rem;transform:translateY(-200%)}
     .skip-link:focus{transform:none}
@@ -45,6 +51,13 @@
     <article aria-labelledby="faq-title">
       <h1 id="faq-title">Engineering project records licensing FAQ</h1>
       <p>HESTIA Data licenses engineering records from individual projects in Türkiye. Find out what you can request, how we obtain the rights and how to get a quote.</p>
+      <section id="licensing-assistant" aria-labelledby="licensing-assistant-heading">
+        <h2 id="licensing-assistant-heading">Ask the HESTIA Data assistant</h2>
+        <p>Ask about project records, written rights or pricing. ElevenLabs processes messages to generate replies. Keep confidential and personal details out of the chat. <a href="/privacy.html#website-assistant">Chat privacy details</a></p>
+        <button type="button" id="open-licensing-chat" aria-controls="licensing-chat-panel" hidden>Open text chat</button>
+        <p id="licensing-chat-status" role="status"></p>
+        <div id="licensing-chat-panel" role="region" aria-label="HESTIA licensing chat" tabindex="-1" hidden></div>
+      </section>
       <section id="project-scope" aria-labelledby="project-scope-heading">
         <h2 id="project-scope-heading">Which projects does HESTIA Data cover?</h2>
         <p>HESTIA Data handles requests for engineering records from public- and private-sector construction projects, power plants and industrial facilities in Türkiye. Power projects can include solar, wind and hydroelectric plants. Availability depends on the project, the documents requested and the rights holder’s written permission.</p>
@@ -96,5 +109,38 @@
     </article>
   </main>
   <footer><div class="wrap"><nav aria-label="Site information"><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a></nav></div></footer>
+  <script>
+    (() => {
+      const button = document.getElementById('open-licensing-chat');
+      const panel = document.getElementById('licensing-chat-panel');
+      const status = document.getElementById('licensing-chat-status');
+      button.hidden = false;
+
+      button.addEventListener('click', () => {
+        button.disabled = true;
+        status.textContent = 'Loading chat…';
+
+        const loader = document.createElement('script');
+        loader.src = 'https://unpkg.com/@elevenlabs/convai-widget-embed@0.26.0';
+        loader.async = true;
+        loader.addEventListener('load', () => {
+          const chat = document.createElement('elevenlabs-convai');
+          chat.setAttribute('agent-id', 'agent_7901m829v34cfsss3446tassj2ww');
+          chat.setAttribute('layout', 'page');
+          panel.replaceChildren(chat);
+          panel.hidden = false;
+          button.hidden = true;
+          status.textContent = '';
+          panel.focus();
+        }, { once: true });
+        loader.addEventListener('error', () => {
+          loader.remove();
+          button.disabled = false;
+          status.textContent = 'Chat could not load. Read the answers below or try again.';
+        }, { once: true });
+        document.head.append(loader);
+      });
+    })();
+  </script>
 </body>
 </html>
